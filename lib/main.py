@@ -64,7 +64,7 @@ class Main(object):
 		if self.args.output is None:
 			self.output_dir = "output/{0}".format(self.args.project)
 		else:
-			self.output_dir = "{0}output/{1}".format(self.args.output, self.args.project)
+			self.output_dir = "{0}/output/{1}".format(self.args.output, self.args.project)
 
 		try:
 			os.makedirs(self.output_dir)
