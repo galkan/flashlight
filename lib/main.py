@@ -26,23 +26,6 @@ except ImportError, err:
         sys.exit(1)
 
 
-
-class AddressAction(argparse.Action):
-  
-        def __call__(self, parser, args, values, option = None):
-		
-		command_list = { "active" : {args.destination : "-d/--destination"} , "passive" : {args.interface : "-i/--interface"}, "screen" : {args.destination : "-d/--destination"}, "filter" : {args.pcap : "-f/--pcap_file"} }
-
-		try:
-			for key, value in command_list[args.scan_type].iteritems():
-				if key is None:
-					print "{0} argument is required".format(value)
-					sys.exit(1)
-		except:
-			pass
-
-
-
 class Main(object):
 		
 	def __init__(self):
@@ -69,8 +52,14 @@ class Main(object):
 		parser.add_argument('-n', '--nmap-optimize', dest = 'nmap_optimize', action = 'store_true', help = 'Use Some Sxtra Nmap Options To Optimize Scanning For Performance Tuning', default = None)
 		parser.add_argument('-v', '--verbose', dest = 'verbose', action = 'store_true', help = 'Verbose Output', default = None)
 		parser.add_argument('-V', '--version', action='version', version='%(prog)s 1.0')
-		parser.add_argument('options', nargs='*', action = AddressAction)
+		
 		self.args = parser.parse_args()
+
+		command_list = { "active" : {self.args.destination : "-d/--destination"} , "passive" : {self.args.interface : "-i/--interface"}, "screen" : {self.args.destination : "-d/--destination"}, "filter" : {self.args.pcap : "-f/--pcap_file"} }
+
+                for key, value in command_list[self.args.scan_type].iteritems():
+                        if key is None:
+                                parser.error("{0} argument is required".format(value))
 
 		if self.args.output is None:
 			self.output_dir = "output/{0}".format(self.args.project)
