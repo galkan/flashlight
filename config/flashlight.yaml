@@ -1,0 +1,12 @@
+tcp_ports:
+         - 21,  22,23,25,  80,  443,445,3128,8080
+
+udp_ports: 
+         - 53,  161
+
+scripts:
+         - http-brute, smtp-*,      ftp-brute, snmp-*
+
+screen_ports:
+         - 80, 443,   8080,    8443
+

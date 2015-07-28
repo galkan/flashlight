@@ -1,69 +1,76 @@
 
-__VERSION__ = '0.1'
-__AUTHOR__ = 'Galkan'
-__DATE__ = '20.07.2014'
-
 try:
-        import sys
-        from ConfigParser import SafeConfigParser
+	import yaml
+	from lib.core.exceptions import FlashLightExceptions
 except ImportError,e:
         import sys
         sys.stdout.write("%s\n" %e)
         sys.exit(1)
 
 
-class ConfigParser:
-	result = {}
-	
-	@staticmethod
-       	def parse(config_file):
+class ConfigParser(object):
 
-		scan_proto = None
-		scan_port = None
-		scan_options = None
-		script_options = None
+	result = {}
+	scan_options = None
+
+	@staticmethod
+        def parser(config_file):
 
 		if not ConfigParser.result:
 			try:
-				parser = SafeConfigParser()
-                		parser.read(config_file)
-              		except Exception, err:
-				print >> sys.stderr, err 
-				sys.exit(1)
+				with open(config_file, 'r') as stream:
+    					cfg = yaml.load(stream)
+			except IOError:
+				raise FlashLightExceptions("{0} Cannot be opened !!!".format(config_file))			
+			except Exception, err:
+				raise FlashLightExceptions(str(err))			        
+ 
+	
+			for section in cfg:
+				ConfigParser.result[section] = ','.join([ value.strip() for value  in ''.join([value for value in cfg[section] ]).split(',') ])
 
-			for section_name in parser.sections():
-				if section_name == "ports":
-					for name, value in parser.items(section_name):
-						if name == "tcp":
-							scan_proto = "-sS "
-							for port in value.split(","):
-								if scan_port is None:
-									scan_port = port.strip()
-								else:
-									scan_port = scan_port + "," + port.strip()
-							scan_options = "-sS -p T:%s"% scan_port
-							scan_port = None
-						elif name == "udp":
-							scan_proto = "-sU "
-							for port in value.split(","):
-								if scan_port is None:
-									scan_port = port.strip()
-								else:
-									scan_port = scan_port + "," + port.strip()
-							if scan_options is None:
-								scan_options = "-sU -p U:%s"% scan_port
-							else:
-								scan_options = "-sU " + scan_options + ",U:" + scan_port	
-					ConfigParser.result["scan"] = scan_options
-				elif section_name == "script":
-					for name, value in parser.items(section_name):
-						for line in value.split(","):
-							if script_options is None:
-								script_options = line.strip()
-							else:
-								script_options = script_options + "," + line.strip()
-						ConfigParser.result["script"] = script_options
-
-		return ConfigParser.result
+                return ConfigParser.result        	
 
 
+
+	@staticmethod
+        def get_ports_options(config_file):
+
+                if not ConfigParser.scan_options:
+                        try:
+                                cfg = ConfigParser.parser(config_file)
+                        except Exception, err:
+                                raise FlashLightExceptions("Error When Parsing {0}: {1}".format(config_file, str(err)))
+
+                        try:
+                                tcp_ports = "-sS -p T:{0}".format(cfg["tcp_ports"])
+                        except:
+                                tcp_ports = None
+
+                        try:
+                                udp_ports = "U:{0} -sU".format(cfg["udp_ports"])
+                        except: 
+                                udp_ports = None
+                                
+                        if tcp_ports and udp_ports:
+                                ConfigParser.scan_options = "{0},{1}".format(tcp_ports, udp_ports)
+                        elif tcp_ports:
+                                ConfigParser.scan_options = tcp_ports
+                        elif udp_ports:
+                                ConfigParser.scan_options = "-p {0}".format(udp_ports)
+
+                return "-F"  if ConfigParser.scan_options is None else ConfigParser.scan_options
+
+	
+
+	@staticmethod
+	def get_scripts_options(config_file):
+
+		ports_options = ConfigParser.get_ports_options(config_file)
+                cfg = ConfigParser.parser(config_file)
+                try:
+                        script_options = "--script=default,{0}".format(cfg["scripts"])
+                except:
+                        script_options = "--script=default" 
+
+		return "{0} {1}".format(ports_options,script_options)
