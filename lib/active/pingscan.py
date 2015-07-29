@@ -3,7 +3,7 @@ try:
 	import re
 	import tempfile
 	import subprocess
-	from lib.corescanner import CoreScanner
+	from lib.active.corescanner import CoreScanner
 	from lib.core.config_parser import ConfigParser
 	from lib.core.exceptions import FlashLightExceptions
 except ImportError, err:

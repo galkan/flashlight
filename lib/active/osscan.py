@@ -1,7 +1,7 @@
 
 try:
-	from lib.corescanner import CoreScanner
 	from lib.core.config_parser import ConfigParser
+	from lib.active.corescanner import CoreScanner
 except ImportError, err:
 	from lib.core.core import Core
 	Core.print_error(err)

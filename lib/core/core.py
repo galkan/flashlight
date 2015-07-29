@@ -1,4 +1,5 @@
 
+import os
 import sys
 
 class Core(object):
@@ -8,5 +9,22 @@ class Core(object):
 
 	@staticmethod
 	def print_error(message):
+		""" Print error message given """
+
 		print >> sys.stderr, str(message)
 		sys.exit(1)
+
+
+	@staticmethod
+	def is_file_exists(file_name):
+                """ Check file whether exists or not """
+
+                if not os.path.exists(Core.commands_path[file_name]):
+                        Core.print_error("{0} Doesn't Exists on The System !!!".format(Core.commands_path[file_name]))
+
+
+class FileExists(object):
+
+	def __init__(self, file_list):
+		for file_name in file_list:
+			Core.is_file_exists(file_name)
