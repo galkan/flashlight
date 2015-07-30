@@ -17,7 +17,7 @@ class Passive(InitDirFile):
 		InitDirFile.__init__(self, [Core.commands_path["tcpdump"], Core.commands_path["arpspoof"]], output_dir, "pcap")
 
 		self.__proc_route = "/proc/net/route"
-		self._output_file = "{0}{1}.pcap".format(self._output_dir, datetime.datetime.now().strftime("%Y%m%d%H%M"))
+		self._output_file = "{0}{1}.pcap".format(self._output_dir, datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
 	
 		self._default_gw = self.__get_default_gw()
 
