@@ -4,37 +4,22 @@ try:
 	import socket
 	import struct
 	import datetime
-	from lib.core.core import FileExists
+	from lib.core.core import Core,InitDirFile
 except ImportError, err:
 	from lib.core.core import Core
 	Core.print_error(err)
 
 
-class Passive(FileExists):
+class Passive(InitDirFile):
 
 	def __init__(self, output_dir):
 
-		FileExists.__init__(self, ["tcpdump", "arpspoof"])
+		InitDirFile.__init__(self, [Core.commands_path["tcpdump"], Core.commands_path["arpspoof"]], output_dir, "pcap")
 
 		self.__proc_route = "/proc/net/route"
-		self._output_file = self.__init_pcap_file(output_dir)
+		self._output_file = "{0}{1}.pcap".format(self._output_dir, datetime.datetime.now().strftime("%Y%m%d%H%M"))
 	
 		self._default_gw = self.__get_default_gw()
-
-
-	def __init_pcap_file(self, output_dir):
-
-		if output_dir[0] != "/":
-                        pcap_output_dir = "{0}/{1}/pcap".format(os.getcwd(), output_dir)
-                else:   
-                        pcap_output_dir = "{0}/pcap/".format(output_dir)
-
-                try:
-                        os.makedirs(pcap_output_dir)
-                except: 
-                        pass
-
-                return "{0}/{1}.pcap".format(pcap_output_dir, datetime.datetime.now().strftime("%Y%m%d%H%M"))
 
 
 	def __get_default_gw(self):

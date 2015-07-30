@@ -17,7 +17,6 @@ class PassiveScan(Passive):
 		Passive.__init__(self, output_dir)	
 
 		self.__args = args
-		self.__output_dir  = output_dir
                 self.__proc_ip_forward = "/proc/sys/net/ipv4/ip_forward"
 
 
@@ -61,12 +60,9 @@ class PassiveScan(Passive):
 		arpspoof_proc = None
                 if self.__args.mim:
 			self.__enable_forwarding()
-			
 			if self._default_gw:
-				print "ARPSPOOF"
 				arpspoof_proc = subprocess.Popen([Core.commands_path["arpspoof"], "-i", self.__args.interface, self._default_gw], shell = False, stdout = subprocess.PIPE,)
 
 		self.__run_tcpdump()
 		if arpspoof_proc:
 			arpspoof_proc.kill()
-		

@@ -15,16 +15,32 @@ class Core(object):
 		sys.exit(1)
 
 
-	@staticmethod
-	def is_file_exists(file_name):
-                """ Check file whether exists or not """
-
-                if not os.path.exists(Core.commands_path[file_name]):
-                        Core.print_error("{0} Doesn't Exists on The System !!!".format(Core.commands_path[file_name]))
-
 
 class FileExists(object):
 
 	def __init__(self, file_list):
+
 		for file_name in file_list:
-			Core.is_file_exists(file_name)
+			if not os.path.exists(file_name):
+				Core.print_error("{0} Doesn't Exists On The System".format(file_name))
+
+
+
+class InitDirFile(FileExists):
+
+	def __init__(self, file_list, output_dir, scan_type):
+	
+		FileExists.__init__(self, file_list)
+		
+		if output_dir[0] != "/":
+                        self._output_dir = "{0}/{1}/{2}/".format(os.getcwd(), output_dir, scan_type)
+                else:   
+                        self._output_dir = "{0}/{1}/".format(output_dir, scan_type)
+
+                try:
+                        os.makedirs(self._output_dir)
+                except: 
+                        pass
+
+		
+				

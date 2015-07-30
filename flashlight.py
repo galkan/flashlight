@@ -2,10 +2,10 @@
 
 try:
 	from lib.main import Main
+	from lib.core.core import Core
 except ImportError, err:
-        import sys
-        sys.stdout.write("%s\n" %err)
-        sys.exit(1)
+	from lib.core.core import Core
+	Core.print_error(err)
 
 ##
 ### Main, go Galkan go go go ...
@@ -14,5 +14,5 @@ except ImportError, err:
 if __name__ == "__main__":
 
 	flashlight = Main()
-	flashlight.run(flashlight.args.scan_type)
+	flashlight._run(flashlight._args.scan_type)
 

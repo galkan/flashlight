@@ -19,14 +19,14 @@ class Main(object):
 		
 	def __init__(self):
 		
-		self.services = { "active":self.active_scan, "passive":self.passive_scan }	
+		self.__services = { "active":self.__active_scan, "passive":self.__passive_scan, "screen":self.__takescreen }	
 
                 usage = "Usage: use --help for further information"
 		description = "Flashligth: Light your ways through Pentest"
                 parser = argparse.ArgumentParser(description = description, usage = usage)
 
 		parser.add_argument('-p', '--project', dest = 'project', action = 'store', help = 'Project Name', required = True)
-                parser.add_argument('-s', '--scan_type', dest = 'scan_type', help = 'Scan Type', choices = self.services.keys(), required = True)
+                parser.add_argument('-s', '--scan_type', dest = 'scan_type', help = 'Scan Type', choices = self.__services.keys(), required = True)
 		parser.add_argument('-d', '--destination', dest = 'destination', action = 'store', help = 'Target Ip/Host Name')		
 		parser.add_argument('-c', '--config', dest = 'config_file', action = 'store', help = 'Configuration File', metavar = 'FILE', default='config/flashlight.yaml')
 		parser.add_argument('-i', '--interface', dest = 'interface', action = 'store', help = 'Interface')
@@ -62,7 +62,7 @@ class Main(object):
 
 
 
-	def active_scan(self):
+	def __active_scan(self):
 
 		""" Run Nmap In Order To Do Port Scan Through Active Scan """
 		
@@ -70,12 +70,17 @@ class Main(object):
 		active._run()
 
 
-	def passive_scan(self):
+	def __passive_scan(self):
 	
 		""" Capture Traffic in Passive Mode """
 
 		passive = PassiveScan(self._args, self.__output_dir)
 		passive._run()	
+
+
+	def __takescreen(self):
+
+		pass
 
 
 	def _run(self, scan_type):
@@ -86,7 +91,7 @@ class Main(object):
 			Core.print_error("Run as ROOT")
 
 		signal.signal(signal.SIGINT, self.signal_handler)
-		self.services[scan_type]()
+		self.__services[scan_type]()
 
 
 	def signal_handler(self, signal, frame):

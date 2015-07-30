@@ -1,6 +1,7 @@
 
 try:
 	import re
+	import datetime
 	import tempfile
 	import subprocess
 	from lib.active.corescanner import CoreScanner
@@ -20,15 +21,17 @@ class PingScan(CoreScanner):
 		self.ip_file_to_scan = tempfile.NamedTemporaryFile(mode='w+t')
 		self.ip_file_to_scan.write("\n".join([ip_domain.strip() for ip_domain in destination.split(",")]))
 
-        	CoreScanner.__init__(self, self.ip_file_to_scan.name, output_dir, nmap_optimize, scan_type)
+		self.__output_file = "{0}{1}-{2}".format(output_dir, scan_type, datetime.datetime.now().strftime("%Y%m%d%H%M"))
+        	CoreScanner.__init__(self, self.ip_file_to_scan.name, self.__output_file, nmap_optimize, scan_type)
+
 
 
 	def run(self, result_file):
 
 		self.ip_file_to_scan.seek(0)
 
-		gnmap_file = "{0}.gnmap".format(self.output_file)
-		cmd = "{0} -oA {1}".format(self.proc_cmd, self.output_file)
+		gnmap_file = "{0}.gnmap".format(self.__output_file)
+		cmd = "{0} -oA {1}".format(self.proc_cmd, self.__output_file)
 
 		print "PingScan: %s"% cmd
 
