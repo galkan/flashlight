@@ -6,6 +6,7 @@ try:
 	import argparse
 	import subprocess
 	from lib.core.core import Core
+	from lib.screenscan import ScreenScan
 	from lib.activescan import ActiveScan
 	from lib.passivescan import PassiveScan
 	from lib.core.threadpool import Worker,ThreadPool				
@@ -80,7 +81,8 @@ class Main(object):
 
 	def __takescreen(self):
 
-		pass
+		screen = ScreenScan(self._args, self.__output_dir)
+		screen._run()
 
 
 	def _run(self, scan_type):
