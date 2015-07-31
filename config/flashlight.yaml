@@ -5,7 +5,7 @@ udp_ports:
          - 53,  161
 
 scripts:
-         - http-enum, smtp-*,      ftp-brute, snmp-*
+         - http-enum,smtp-*,snmp-*
 
 screen_ports:
          - 80, 443,   8080,    8443
