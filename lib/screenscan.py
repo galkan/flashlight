@@ -68,7 +68,7 @@ class ScreenScan(WebScan):
 				url = "{0}://{1}".format(port, ip)
 				output_file = "{0}{1}_{2}-{3}.png".format(self._output_dir, ip, port, datetime.datetime.now().strftime("%Y%m%d%H%M%S")) 	
 				phantomjs_cmd = "{0} --ignore-ssl-errors=yes {1} {2} {3}".format(Core.commands_path["phantomjs"], self.__args.rasterize, url, output_file)
-
+				print phantomjs_cmd
 				pool.add_task(self.__run_phantomjs, phantomjs_cmd)
 
 		pool.wait_completion()
