@@ -12,15 +12,6 @@ except ImportError, err:
 
 class Passive(InitDirFile):
 
-<<<<<<< Updated upstream
-	def __init__(self, output_dir):
-
-		InitDirFile.__init__(self, [Core.commands_path["tcpdump"], Core.commands_path["arpspoof"]], output_dir, "pcap")
-
-		self.__proc_route = "/proc/net/route"
-		self._output_file = "{0}{1}.pcap".format(self._output_dir, datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
-	
-=======
 	def __init__(self, args):
 
 		InitDirFile.__init__(self, [Core.commands_path["tcpdump"], Core.commands_path["arpspoof"]], args, "pcap")
@@ -28,7 +19,6 @@ class Passive(InitDirFile):
 		self.__proc_route = "/proc/net/route"
 		self._output_file = "{0}{1}.pcap".format(self._output_dir, datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
 		
->>>>>>> Stashed changes
 		self._default_gw = self.__get_default_gw()
 
 

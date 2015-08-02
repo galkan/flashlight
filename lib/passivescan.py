@@ -12,19 +12,11 @@ except ImportError, err:
 
 class PassiveScan(Passive):
 
-<<<<<<< Updated upstream
-	def __init__(self, args, output_dir):
-
-		Passive.__init__(self, output_dir)	
-
-		self.__args = args
-=======
 	def __init__(self, args):
 
 		self.__args = args
 		Passive.__init__(self, self.__args)	
 
->>>>>>> Stashed changes
                 self.__proc_ip_forward = "/proc/sys/net/ipv4/ip_forward"
 
 
@@ -66,13 +58,6 @@ class PassiveScan(Passive):
 	def _run(self):
 	
 		arpspoof_proc = None
-<<<<<<< Updated upstream
-                if self.__args.mim:
-			self.__enable_forwarding()
-			if self._default_gw:
-				arpspoof_proc = subprocess.Popen([Core.commands_path["arpspoof"], "-i", self.__args.interface, self._default_gw], shell = False, stdout = subprocess.PIPE,)
-
-=======
 
                 if self.__args.mim:
 			self.__enable_forwarding()
@@ -81,7 +66,6 @@ class PassiveScan(Passive):
 				arpspoof_proc = subprocess.Popen([Core.commands_path["arpspoof"], "-i", self.__args.interface, self._default_gw], shell = False, stdout = subprocess.PIPE,)
 
 
->>>>>>> Stashed changes
 		self.__run_tcpdump()
 		if arpspoof_proc:
 			arpspoof_proc.kill()

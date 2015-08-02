@@ -13,20 +13,12 @@ except ImportError, err:
 
 class ScreenScan(WebScan):
 
-<<<<<<< Updated upstream
-	def __init__(self, args, output_dir):
-=======
 	def __init__(self, args):
->>>>>>> Stashed changes
 
 		self.__args = args
 		self.__open_ports_reg = { "http":"80/open/tcp//", "https":"443/open/tcp//" }
 
-<<<<<<< Updated upstream
-		WebScan.__init__(self, args, output_dir)	
-=======
 		WebScan.__init__(self, self.__args)	
->>>>>>> Stashed changes
 
 
 	def _run(self):
