@@ -3,7 +3,7 @@ FENER - Automated Information Gathering Tool for Penetration Testers
 =====
 
 
-![](https://github.com/galkan/fener/blob/master/images/flashlight.png "Fener")  
+![](https://github.com/galkan/flashlight/blob/master/images/flashlight.png "Flashlight")  
 
 
 Fener (flashlight) is automated info gathering tool that can be used by penetration testers. Main purpose is to automate and speed up network discovery, port scanning and info gathering phase.
@@ -16,37 +16,4 @@ This method is used for stealty network discovery. No packet is send during this
 - Screenshot scan   
 This method is used to quickly discover web applications in target network. Quick port scan is performed to discover open web ports and then screenshots of discovered web pages is taken and saved in output directory. With this method all web pakes in target network can be archived and examined offline. 
 
-**Common features**
-- Multi threaded 
-- Database support
-- Written in Python
-- Custom reporting
-- Logging 
 
-
-###Prerequisities
-- Python 2.7+ 
-- Nmap
-- PhantomJS
-- Wireshark/Tshark
-- Tcpdump
-- Arpsooof/Ettercap
-- SQLite
-
-
-###Installation
-..
-''
-`` 
-git clone https://github.com/galkan/fener/
-`` 
-###Usage
-
-
-
-###Examples 
-
-./fener -a 
-
-###Log Format
->>>>>>> origin/master
