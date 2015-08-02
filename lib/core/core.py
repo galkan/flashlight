@@ -28,6 +28,7 @@ class FileExists(object):
 
 class InitDirFile(FileExists):
 
+<<<<<<< Updated upstream
 	def __init__(self, file_list, output_dir, scan_type):
 	
 		FileExists.__init__(self, file_list)
@@ -36,11 +37,21 @@ class InitDirFile(FileExists):
                         self._output_dir = "{0}/{1}/{2}/".format(os.getcwd(), output_dir, scan_type)
                 else:   
                         self._output_dir = "{0}/{1}/".format(output_dir, scan_type)
+=======
+	def __init__(self, file_list, args, scan_type):
+	
+		FileExists.__init__(self, file_list)
+		
+		self._output_dir = "{0}/output/{1}/{2}/".format(args.output, args.project, scan_type) if args.output.startswith("/") else "{0}/{1}/{2}/{3}".format(os.getcwd(), args.output, args.project, scan_type)
+>>>>>>> Stashed changes
 
                 try:
                         os.makedirs(self._output_dir)
                 except: 
                         pass
 
+<<<<<<< Updated upstream
 		
 				
+=======
+>>>>>>> Stashed changes
