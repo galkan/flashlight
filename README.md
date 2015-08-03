@@ -1,9 +1,9 @@
 
-FENER - Automated Information Gathering Tool for Penetration Testers 
+![](https://github.com/galkan/flashlight/blob/master/images/flashlight.png "Flashlight")  FLASHLIGHT  - Automated Information Gathering Tool for Penetration Testers 
 =====
 
 
-![](https://github.com/galkan/flashlight/blob/master/images/flashlight.png "Flashlight")  
+ 
 
 
 Fener (flashlight) is automated info gathering tool that can be used by penetration testers. Main purpose is to automate and speed up network discovery, port scanning and info gathering phase.
