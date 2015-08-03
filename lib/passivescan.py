@@ -44,7 +44,8 @@ class PassiveScan(Passive):
 
 	def __run_tcpdump(self):
         
-                tcpdump_proc = subprocess.Popen([Core.commands_path["tcpdump"], "-tttnn", "-i", self.__args.interface, "-s", "0", "-w", self._output_file] , shell = False, stdout = subprocess.PIPE, stderr = subprocess.PIPE, )
+                tcpdump_proc = subprocess.Popen([Core.commands_path["tcpdump"], "-tttnn", "-i", self.__args.interface, "-s", "0", "-w", self._output_file] , shell = False, stdout = subprocess.PIPE,  )
+                print tcpdump_proc
                 self.__show_progress()
                 tcpdump_proc.kill()
 
