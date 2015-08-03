@@ -11,6 +11,8 @@ class ConfigParser(object):
 
 	result = {}
 	scan_options = None
+	default_ports = "80,443"
+	
 
 	@staticmethod
         def parser(config_file):
@@ -87,4 +89,4 @@ class ConfigParser(object):
 		try:
 			return cfg["screen_ports"]
 		except:
-			return "80,443"
+			return ConfigParser.default_ports
