@@ -24,17 +24,8 @@ class ActiveScan(InitDirFile):
 
 	def _run(self):
 	
-                if self.__args.is_alive:
-                        ping_scan = PingScan(self.__args.destination, self._output_dir, self.__args.nmap_optimize, "PingScan")
-                        ping_scan.run(self.__ip_file_to_scan)
-                else:   
-                        self.__ip_file_to_scan.write("\n".join([ip.strip() for ip in self.__args.destination.split(",")]))
+                PingScan(self.__args.destination, self._output_dir, self.__args.nmap_optimize, "PingScan")._run(self.__ip_file_to_scan)  if self.__args.is_alive else self.__ip_file_to_scan.write("\n".join([ip.strip() for ip in self.__args.destination.split(",")]))
 
-
-		self.__ip_file_to_scan.seek(0)
-		for line in self.__ip_file_to_scan:
-			print line.rstrip()
-	
 		port_scan = PortScan(self.__args.config_file, self._output_dir, self.__ip_file_to_scan, self.__args.nmap_optimize, "PortScan")
                 os_scan = OsScan(self._output_dir, self.__ip_file_to_scan, self.__args.nmap_optimize, "OsScan")
                 script_scan = ScriptScan(self.__args.config_file, self._output_dir, self.__ip_file_to_scan, self.__args.nmap_optimize, "ScriptScan")

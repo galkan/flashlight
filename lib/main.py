@@ -18,7 +18,7 @@ class Main(object):
 		
 	def __init__(self):
 		
-		__service_name_list = ("active","passive","screen","filter")
+		__service_name_list = ("active", "passive", "screen", "filter")
 
                 usage = "Usage: use --help for further information"
 		description = "Flashligth: Light your ways through Pentest"
@@ -49,7 +49,10 @@ class Main(object):
 			if key is None:
 				parser.error("{0} argument is required".format(value))
 
-		self.__services = { __service_name_list[0]:ActiveScan(self._args), __service_name_list[1]:PassiveScan(self._args), __service_name_list[2]:ScreenScan(self._args) }	
+		try:
+			self.__services = { __service_name_list[0]:ActiveScan(self._args), __service_name_list[1]:PassiveScan(self._args), __service_name_list[2]:ScreenScan(self._args) }	
+		except FlashLightExceptions, err:
+			Core.print_error(err)
 
 
 

@@ -18,6 +18,7 @@ class PassiveScan(Passive):
 		Passive.__init__(self, self.__args)	
 
                 self.__proc_ip_forward = "/proc/sys/net/ipv4/ip_forward"
+		self.__cmd = "{0} -tttnn -i {1} -s 0 -w {2}".format(Core.commands_path["tcpdump"], self.__args.interface, self._output_file)       
 
 
         def __show_progress(self):
@@ -43,9 +44,8 @@ class PassiveScan(Passive):
                         
 
 	def __run_tcpdump(self):
-        
-                tcpdump_proc = subprocess.Popen([Core.commands_path["tcpdump"], "-tttnn", "-i", self.__args.interface, "-s", "0", "-w", self._output_file] , shell = False, stdout = subprocess.PIPE,  )
-                print tcpdump_proc
+ 
+                tcpdump_proc = subprocess.Popen([self.__cmd] , shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE, )
                 self.__show_progress()
                 tcpdump_proc.kill()
 
@@ -65,7 +65,6 @@ class PassiveScan(Passive):
 
 			if self._default_gw:
 				arpspoof_proc = subprocess.Popen([Core.commands_path["arpspoof"], "-i", self.__args.interface, self._default_gw], shell = False, stdout = subprocess.PIPE,)
-
 
 		self.__run_tcpdump()
 		if arpspoof_proc:

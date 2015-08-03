@@ -15,8 +15,8 @@ class ScreenScan(WebScan):
 
 	def __init__(self, args):
 
+		self.__urls = []
 		self.__args = args
-		self.__open_ports_reg = { "http":"80/open/tcp//", "https":"443/open/tcp//" }
 
 		WebScan.__init__(self, self.__args)	
 
@@ -26,49 +26,39 @@ class ScreenScan(WebScan):
 		cmd = "{0} {1}".format(Core.commands_path["nmap"], self._nmap_options)
 		proc = subprocess.Popen([cmd], shell=True, stdout = subprocess.PIPE, stderr = subprocess.PIPE,).communicate()
 		
-		result = self.__parse_nmap_scan()
-
-		if result:	
-			self.__take_screenshot(result)	
+		self.__parse_nmap_scan()
 
 
 	def __parse_nmap_scan(self):
 	
-		result = {}
-
 		self._result_file.seek(0)
 		for line in self._result_file:
-			for port, reg in self.__open_ports_reg.iteritems():
-				if re.search(reg, line):
+			for port in self._scan_options.split(","):
+				if re.search("{0}/open/tcp".format(port), line):
 					ip = line.split()[1]
-					try:
-						result[ip] = "{0},{1}".format(result[ip], port)
-					except KeyError:
-						result[ip] = "{0}".format(port)
-					except Exception, err:
-						self._result_file.close()
-						Core.print_erro(err)
+					if port != "443":
+						self.__urls.append("http://{0}:{1}".format(ip,port))
+					else:
+						self.__urls.append("https://{0}:443".format(ip))
 
 		self._result_file.close()
 		
-		return result
+		if self.__urls:
+			self.__take_screenshot()	
+
+
+	def __take_screenshot(self):
+
+		pool = ThreadPool(self.__args.thread)
+
+		for url in self.__urls:
+			output_file = "{0}{1}_{2}.png".format(self._output_dir, url.split("/")[2], datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
+			phantomjs_cmd = "{0} --ignore-ssl-errors=true {1} {2} {3}".format(Core.commands_path["phantomjs"], self.__args.rasterize, url, output_file)
+			pool.add_task(self.__run_phantomjs, phantomjs_cmd)
+
+		pool.wait_completion()
 
 
 	def __run_phantomjs(self, cmd):
 
 		proc = subprocess.Popen([cmd], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,).communicate()
-
-
-	def __take_screenshot(self, ip_list):
-
-		pool = ThreadPool(self.__args.thread)
-
-		for ip, ports in ip_list.iteritems():
-			for port in ports.split(","):
-				url = "{0}://{1}".format(port, ip)
-				output_file = "{0}{1}_{2}-{3}.png".format(self._output_dir, ip, port, datetime.datetime.now().strftime("%Y%m%d%H%M%S")) 	
-				phantomjs_cmd = "{0} --ignore-ssl-errors=yes {1} {2} {3}".format(Core.commands_path["phantomjs"], self.__args.rasterize, url, output_file)
-				print phantomjs_cmd
-				pool.add_task(self.__run_phantomjs, phantomjs_cmd)
-
-		pool.wait_completion()

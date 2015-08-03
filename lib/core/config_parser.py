@@ -3,9 +3,8 @@ try:
 	import yaml
 	from lib.core.exceptions import FlashLightExceptions
 except ImportError,e:
-        import sys
-        sys.stdout.write("%s\n" %e)
-        sys.exit(1)
+	from lib.core.core import Core
+	Core.print_err(err)
 
 
 class ConfigParser(object):
@@ -74,3 +73,18 @@ class ConfigParser(object):
                         script_options = "--script=default" 
 
 		return "{0} {1}".format(ports_options,script_options)
+
+
+
+	@staticmethod
+	def get_screen_ports(config_file):
+
+		try:
+                	cfg = ConfigParser.parser(config_file)
+                except Exception, err:
+                        raise FlashLightExceptions("Error When Parsing {0}: {1}".format(config_file, str(err)))
+
+		try:
+			return cfg["screen_ports"]
+		except:
+			return "80,443"

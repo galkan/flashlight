@@ -6,3 +6,4 @@ class FlashLightExceptions(Exception):
 
         def __str__(self):
                 return self.err
+
