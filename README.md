@@ -1,5 +1,5 @@
 
-![](https://github.com/galkan/flashlight/blob/master/images/flashlight.png "Flashlight")  FLASHLIGHT  - Automated Information Gathering Tool for Penetration Testers 
+![](https://github.com/galkan/flashlight/blob/master/images/flashlight.png "Flashlight") - Automated Information Gathering Tool for Penetration Testers 
 =====
 
 
