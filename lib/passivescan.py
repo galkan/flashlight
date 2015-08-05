@@ -59,7 +59,7 @@ class PassiveScan(Passive):
 	def _run(self, logger):
 	
 		arpspoof_proc = None
-
+		
                 if self.__args.mim:
 			logger._logging("Ip Forwarding Enabled")
 			self.__enable_forwarding()
@@ -76,4 +76,5 @@ class PassiveScan(Passive):
 		if arpspoof_proc:
 			logger._logging("STOP: Arpspoof")
 			arpspoof_proc.kill()
+		
 		logger._logging("Finished Passive Scan. Results saved in {0} folder".format(self._output_dir))
