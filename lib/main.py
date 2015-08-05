@@ -43,9 +43,11 @@ class Main(object):
 		parser.add_argument('-v', '--verbose', dest = 'verbose', action = 'store_true', help = 'Verbose Output', default = None)
 		parser.add_argument('-V', '--version', action='version', version='%(prog)s 1.0')
 
-		self._args = parser.parse_args()
-
-
+		try:
+			self._args = parser.parse_args()
+		except Exception, err:
+			Core.print_error(err)
+			
 		command_list = { __service_name_list[0] : {self._args.destination : "-d/--destination"} , __service_name_list[1] : {self._args.interface : "-i/--interface"}, __service_name_list[2] : {self._args.destination : "-d/--destination"}, __service_name_list[3] : {self._args.pcap : "-f/--pcap_file"} }
 
 		for key, value in command_list[self._args.scan_type].iteritems():
@@ -72,8 +74,10 @@ class Main(object):
 
 		signal.signal(signal.SIGINT, self.signal_handler)
 
-		self.__services[scan_type]._run(self.__logger)
-
+		try:
+			self.__services[scan_type]._run(self.__logger)
+		except Exception, err:
+			Core.print_error(err)		
 
 
 	def signal_handler(self, signal, frame):
