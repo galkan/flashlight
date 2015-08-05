@@ -12,6 +12,10 @@ class ConfigParser(object):
 	result = {}
 	scan_options = None
 	default_ports = "80,443"
+<<<<<<< HEAD
+=======
+	
+>>>>>>> origin/master
 
 	@staticmethod
         def parser(config_file):
@@ -106,4 +110,7 @@ class ConfigParser(object):
                        	raise FlashLightExceptions(str(err))
 		except:
 			return ConfigParser.default_ports
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
