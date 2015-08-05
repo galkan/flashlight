@@ -25,16 +25,15 @@ class ScreenScan(WebScan):
 		
 		cmd = "{0} {1}".format(Core._commands_path["nmap"], self._nmap_options)
 
-		logger._logging("Starting Nmap Screen Scan: {0}".format(cmd))
+		logger._logging("START: Nmap Screen Scan: {0}".format(cmd))
 		proc = subprocess.Popen([cmd], shell=True, stdout = subprocess.PIPE, stderr = subprocess.PIPE,).communicate()
-		logger._logging("Stopped Nmap Screen Scan")
+		logger._logging("STOP: Nmap Screen Scan")
 
 		self.__parse_nmap_scan(logger)
 
 
 	def __parse_nmap_scan(self, logger):
 	
-		logger._logging("Starting Nmap Screen Scan Parsing")
 		self._result_file.seek(0)
 
 		for line in self._result_file:
@@ -48,25 +47,26 @@ class ScreenScan(WebScan):
 
 		self._result_file.close()
 
-		logger._logging("Stopped Nmap Screen Scan Parsing")
 		if self.__urls:
 			self.__take_screenshot(logger)	
 
 
 	def __take_screenshot(self, logger):
 
-		logger._logging("Starting Screen Scan {0} threads".format(self.__args.thread))
+		logger._logging("START: Screen Scan {0} threads".format(self.__args.thread))
 		pool = ThreadPool(self.__args.thread)
 
 		for url in self.__urls:
 			output_file = "{0}{1}_{2}.png".format(self._output_dir, url.split("/")[2], datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
 			phantomjs_cmd = "{0} --ignore-ssl-errors=true {1} {2} {3}".format(Core._commands_path["phantomjs"], self.__args.rasterize, url, output_file)
+			
+			logger._logging("Taking screenshot: {0}".format(url.split("/")[2]))
 			pool.add_task(self.__run_phantomjs, phantomjs_cmd)
 
 		pool.wait_completion()
-		logger._logging("Stopped Screen Scan")
+		logger._logging("STOP: Screen Scan")
+		logger._logging("Finished Screenshot Scan. Results saved in {0} folder".format(self._output_dir))
 					
-
 
 	def __run_phantomjs(self, cmd):
 

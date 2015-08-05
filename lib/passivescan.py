@@ -61,18 +61,19 @@ class PassiveScan(Passive):
 		arpspoof_proc = None
 
                 if self.__args.mim:
-			logger._logging("Flashlight : Ip Forwarding Enabled")
+			logger._logging("Ip Forwarding Enabled")
 			self.__enable_forwarding()
 
 			if self._default_gw:
-				logger._logging("Flashlight : Getting Default Gw {0}".format(self._default_gw))
-				logger._logging("Starting Arpspoofing")
+				logger._logging("Getting Default Gw {0}".format(self._default_gw))
+				logger._logging("START: Arpspoofing")
 				arpspoof_proc = subprocess.Popen([Core._commands_path["arpspoof"], "-i", self.__args.interface, self._default_gw], shell = False, stdout = subprocess.PIPE,)
 
-		logger._logging("Starting Tcpdump")
+		logger._logging("START: Tcpdump")
 		self.__run_tcpdump()
-		logger._logging("Killing Tcpdump")
+		logger._logging("STOP: Tcpdump")
 
 		if arpspoof_proc:
-			logger._logging("Killing Arpspoof")
+			logger._logging("STOP: Arpspoof")
 			arpspoof_proc.kill()
+		logger._logging("Finished Passive Scan. Results saved in {0} folder".format(self._output_dir))

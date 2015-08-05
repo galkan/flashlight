@@ -33,8 +33,8 @@ class PingScan(CoreScanner):
 		gnmap_file = "{0}.gnmap".format(self.__output_file)
 		cmd = "{0} -oA {1}".format(self._proc_cmd, self.__output_file)
 
-		logger._logging("Starting Nmap Ping Scan")
-		logger._logging("Ping Scan : {0}".format(cmd))
+		logger._logging("START: Nmap Ping Scan")
+		logger._logging("CMD - Ping Scan: {0}".format(cmd))
 
 		proc = subprocess.Popen([cmd], shell=True, stdout=subprocess.PIPE,).communicate()
 		try:
@@ -43,4 +43,4 @@ class PingScan(CoreScanner):
 		except Exception, err:
 			raise FlashLightExceptions(str(err))
 		
-		logger._logging("Stopped Ping Scan")
+		logger._logging("STOP: Nmap Ping Scan")

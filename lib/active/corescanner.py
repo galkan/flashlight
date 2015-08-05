@@ -32,9 +32,9 @@ class CoreScanner(object):
 
 		cmd = "{0} {1} -oA {2}".format(self._proc_cmd, self._scan_options, self.__output_file) if self.__scan_type in ( "PortScan", "ScriptScan") else "{0} -oA {1}".format(self._proc_cmd, self.__output_file)
 		
-		logger._logging("Starting {0} scan".format(self.__scan_type))
-		logger._logging("{0} : {1}".format(self.__scan_type, cmd))
+		logger._logging("START: Nmap {0}".format(self.__scan_type))
+		logger._logging("CMD - {0} : {1}".format(self.__scan_type, cmd))
 		
 		proc = subprocess.Popen([cmd], shell=True, stdout = subprocess.PIPE, stderr = subprocess.PIPE,).communicate()
 
-		logger._logging("Stopped {0} scan".format(self.__scan_type))
+		logger._logging("STOP: Nmap {0}".format(self.__scan_type))
