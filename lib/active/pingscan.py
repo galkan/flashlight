@@ -26,14 +26,15 @@ class PingScan(CoreScanner):
 
 
 
-	def _run(self, result_file):
+	def _run(self, result_file, logger):
 
 		self.__ip_file_to_scan.seek(0)
 
 		gnmap_file = "{0}.gnmap".format(self.__output_file)
 		cmd = "{0} -oA {1}".format(self._proc_cmd, self.__output_file)
 
-		print "PingScan: %s"% cmd
+		logger._logging("Starting Nmap Ping Scan")
+		logger._logging("Ping Scan : {0}".format(cmd))
 
 		proc = subprocess.Popen([cmd], shell=True, stdout=subprocess.PIPE,).communicate()
 		try:
@@ -41,3 +42,5 @@ class PingScan(CoreScanner):
 				result_file.write("\n".join([ re.search(self.__host_up, line).groups()[0] for line in fd  if re.search(self.__host_up, line) ]))
 		except Exception, err:
 			raise FlashLightExceptions(str(err))
+		
+		logger._logging("Stopped Ping Scan")

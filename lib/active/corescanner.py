@@ -22,15 +22,19 @@ class CoreScanner(object):
 	
 		self.__nmap_options = "{0} {1} -iL {2}".format(CoreScanner.__scan_type_options[self.__scan_type], Core.nmap_optimize, self.__ip_file) if nmap_optimize else "{0} -iL {1}".format(CoreScanner.__scan_type_options[self.__scan_type], self.__ip_file)
 			
-		self._proc_cmd = "{0} {1}".format(Core.commands_path["nmap"], self.__nmap_options)
+		self._proc_cmd = "{0} {1}".format(Core._commands_path["nmap"], self.__nmap_options)
 
 
-	def run(self):
+	def _run(self, logger):
 
 		# it is inherited from portscan,osscan,scriptscan class
 		self._ip_file_to_scan.seek(0)
 
 		cmd = "{0} {1} -oA {2}".format(self._proc_cmd, self._scan_options, self.__output_file) if self.__scan_type in ( "PortScan", "ScriptScan") else "{0} -oA {1}".format(self._proc_cmd, self.__output_file)
 		
-		print "%s : %s"% (self.__scan_type, cmd)
+		logger._logging("Starting {0} scan".format(self.__scan_type))
+		logger._logging("{0} : {1}".format(self.__scan_type, cmd))
+		
 		proc = subprocess.Popen([cmd], shell=True, stdout = subprocess.PIPE, stderr = subprocess.PIPE,).communicate()
+
+		logger._logging("Stopped {0} scan".format(self.__scan_type))

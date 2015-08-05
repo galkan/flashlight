@@ -18,7 +18,7 @@ class PassiveScan(Passive):
 		Passive.__init__(self, self.__args)	
 
                 self.__proc_ip_forward = "/proc/sys/net/ipv4/ip_forward"
-		self.__cmd = "{0} -tttnn -i {1} -s 0 -w {2}".format(Core.commands_path["tcpdump"], self.__args.interface, self._output_file)       
+		self.__cmd = "{0} -tttnn -i {1} -s 0 -w {2}".format(Core._commands_path["tcpdump"], self.__args.interface, self._output_file)       
 
 
         def __show_progress(self):
@@ -56,16 +56,23 @@ class PassiveScan(Passive):
                         ip_forward.write('1\n')
 
 
-	def _run(self):
+	def _run(self, logger):
 	
 		arpspoof_proc = None
 
                 if self.__args.mim:
+			logger._logging("Flashlight : Ip Forwarding Enabled")
 			self.__enable_forwarding()
 
 			if self._default_gw:
-				arpspoof_proc = subprocess.Popen([Core.commands_path["arpspoof"], "-i", self.__args.interface, self._default_gw], shell = False, stdout = subprocess.PIPE,)
+				logger._logging("Flashlight : Getting Default Gw {0}".format(self._default_gw))
+				logger._logging("Starting Arpspoofing")
+				arpspoof_proc = subprocess.Popen([Core._commands_path["arpspoof"], "-i", self.__args.interface, self._default_gw], shell = False, stdout = subprocess.PIPE,)
 
+		logger._logging("Starting Tcpdump")
 		self.__run_tcpdump()
+		logger._logging("Killing Tcpdump")
+
 		if arpspoof_proc:
+			logger._logging("Killing Arpspoof")
 			arpspoof_proc.kill()

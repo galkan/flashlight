@@ -2,7 +2,7 @@
 try:
 	import yaml
 	from lib.core.exceptions import FlashLightExceptions
-except ImportError,e:
+except ImportError, err:
 	from lib.core.core import Core
 	Core.print_err(err)
 
@@ -11,6 +11,7 @@ class ConfigParser(object):
 
 	result = {}
 	scan_options = None
+	default_ports = "80,443"
 
 	@staticmethod
         def parser(config_file):
@@ -20,11 +21,10 @@ class ConfigParser(object):
 				with open(config_file, 'r') as stream:
     					cfg = yaml.load(stream)
 			except IOError:
-				raise FlashLightExceptions("{0} Cannot be opened !!!".format(config_file))			
+				raise FlashLightExceptions("{0} cannot be opened !!!".format(config_file))			
 			except Exception, err:
 				raise FlashLightExceptions(str(err))			        
  
-	
 			for section in cfg:
 				ConfigParser.result[section] = ','.join([ value.strip() for value  in ''.join([value for value in cfg[section] ]).split(',') ])
 
@@ -39,7 +39,7 @@ class ConfigParser(object):
                         try:
                                 cfg = ConfigParser.parser(config_file)
                         except Exception, err:
-                                raise FlashLightExceptions("Error When Parsing {0}: {1}".format(config_file, str(err)))
+                                raise FlashLightExceptions("Error when parsing {0}: {1}".format(config_file, str(err)))
 
                         try:
                                 tcp_ports = "-sS -p T:{0}".format(cfg["tcp_ports"])
@@ -64,15 +64,33 @@ class ConfigParser(object):
 
 	@staticmethod
 	def get_scripts_options(config_file):
+		
+		script_options = None
 
-		ports_options = ConfigParser.get_ports_options(config_file)
-                cfg = ConfigParser.parser(config_file)
-                try:
-                        script_options = "--script=default,{0}".format(cfg["scripts"])
-                except:
-                        script_options = "--script=default" 
+		try:
+			ports_options = ConfigParser.get_ports_options(config_file)
+		except Exception, err:
+			raise FlashLightExceptions(str(err))	
 
-		return "{0} {1}".format(ports_options,script_options)
+
+		if ConfigParser.result["scripts"]:
+                	try:
+                        	script_options = "--script=default,{0}".format(ConfigParser.result["scripts"])
+                	except:
+                        	script_options = "--script=default" 
+		else:
+			try:
+        	       		cfg = ConfigParser.parser(config_file)
+			except Exception, err:
+				raise FlashLightExceptions(str(err))
+			
+                	try:
+                        	script_options = "--script=default,{0}".format(cfg["scripts"])
+                	except:
+                        	script_options = "--script=default" 
+		
+
+		return "{0} {1}".format(ports_options, script_options)
 
 
 
@@ -80,11 +98,12 @@ class ConfigParser(object):
 	def get_screen_ports(config_file):
 
 		try:
-                	cfg = ConfigParser.parser(config_file)
-                except Exception, err:
-                        raise FlashLightExceptions("Error When Parsing {0}: {1}".format(config_file, str(err)))
-
-		try:
-			return cfg["screen_ports"]
+			if ConfigParser.result["screen_ports"]:	
+				return ConfigParser.result["screen_ports"]
+			else:
+				cfg = ConfigParser.parser(config_file)
+		except FlashLightExceptions, err:
+                       	raise FlashLightExceptions(str(err))
 		except:
-			return "80,443"
+			return ConfigParser.default_ports
+

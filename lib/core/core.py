@@ -4,8 +4,8 @@ import sys
 
 class Core(object):
 
-	commands_path = { "nmap" : "/usr/bin/nmap", "tshark" : "/usr/bin/tshark", "tcpdump" : "/usr/sbin/tcpdump", "arpspoof" : "/usr/sbin/arpspoof", "phantomjs" : "/usr/local/bin/phantomjs" }
-	nmap_optimize = "-min-hostgroup 64 -min-parallelism 64 -host-timeout=300m -max-rtt-timeout=600ms -initial-rtt-timeout=300ms -min-rtt-timeout=300ms -max-retries=2 -min-rate=150"
+	_commands_path = { "nmap" : "/usr/bin/nmap", "tshark" : "/usr/bin/tshark", "tcpdump" : "/usr/sbin/tcpdump", "arpspoof" : "/usr/sbin/arpspoof", "phantomjs" : "/usr/local/bin/phantomjs" }
+	_nmap_optimize = "-min-hostgroup 64 -min-parallelism 64 -host-timeout=300m -max-rtt-timeout=600ms -initial-rtt-timeout=300ms -min-rtt-timeout=300ms -max-retries=2 -min-rate=150"
 
 	@staticmethod
 	def print_error(message):
@@ -15,7 +15,6 @@ class Core(object):
 		sys.exit(1)
 
 
-
 class FileExists(object):
 
 	def __init__(self, file_list):
@@ -23,7 +22,6 @@ class FileExists(object):
 		for file_name in file_list:
 			if not os.path.exists(file_name):
 				Core.print_error("{0} Doesn't Exists On The System".format(file_name))
-
 
 
 class InitDirFile(FileExists):
@@ -38,4 +36,3 @@ class InitDirFile(FileExists):
                         os.makedirs(self._output_dir)
                 except: 
                         pass
-

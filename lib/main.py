@@ -5,6 +5,7 @@ try:
 	import signal
 	import argparse
 	from lib.core.core import Core
+	from lib.core.logger import Logger
 	from lib.screenscan import ScreenScan
 	from lib.activescan import ActiveScan
 	from lib.passivescan import PassiveScan
@@ -34,7 +35,7 @@ class Main(object):
 		parser.add_argument('-t', '--thread', dest = 'thread', action = 'store', help = 'Thread Number', default = 10, type = int)
 		parser.add_argument('-o', '--output', dest = 'output', action = 'store', help = 'Output Directory', default = os.getcwd())
 		parser.add_argument('-a', '--alive', dest = 'is_alive', action = 'store_true', help = 'Ping Scan to Investigate Which Ip Address Are Up Before Scanning', default = None)
-		parser.add_argument('-l', '--log', dest = 'log_file', action = 'store', help = 'Log File', metavar = 'FILE', default = "flashligth.log")
+		parser.add_argument('-l', '--log', dest = 'log_file', action = 'store', help = 'Log File', metavar = 'FILE', default = "flashlight.log")
 		parser.add_argument('-k', '--passive_timeout', dest = 'passive_timeout', action = 'store', help = 'Passive Scan Timeout Value', default = 15, type = int)
 		parser.add_argument('-m', '--mim', dest = 'mim', action = 'store_true', help = 'Capture the Traffic When Performing Man in The Middle', default = None)
 		parser.add_argument('-n', '--nmap-optimize', dest = 'nmap_optimize', action = 'store_true', help = 'Use Some Sxtra Nmap Options To Optimize Scanning For Performance Tuning', default = None)
@@ -42,6 +43,7 @@ class Main(object):
 		parser.add_argument('-V', '--version', action='version', version='%(prog)s 1.0')
 
 		self._args = parser.parse_args()
+
 
 		command_list = { __service_name_list[0] : {self._args.destination : "-d/--destination"} , __service_name_list[1] : {self._args.interface : "-i/--interface"}, __service_name_list[2] : {self._args.destination : "-d/--destination"}, __service_name_list[3] : {self._args.pcap : "-f/--pcap_file"} }
 
@@ -54,6 +56,7 @@ class Main(object):
 		except FlashLightExceptions, err:
 			Core.print_error(err)
 
+		self.__logger = Logger(self._args.log_file, self._args.verbose)
 
 
 	def _run(self, scan_type):
@@ -65,7 +68,7 @@ class Main(object):
 
 		signal.signal(signal.SIGINT, self.signal_handler)
 
-		self.__services[scan_type]._run()
+		self.__services[scan_type]._run(self.__logger)
 
 
 
