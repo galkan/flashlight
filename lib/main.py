@@ -6,6 +6,7 @@ try:
 	import argparse
 	from lib.core.core import Core
 	from lib.core.logger import Logger
+	from lib.filterscan import FilterScan
 	from lib.screenscan import ScreenScan
 	from lib.activescan import ActiveScan
 	from lib.passivescan import PassiveScan
@@ -52,11 +53,12 @@ class Main(object):
 				parser.error("{0} argument is required".format(value))
 
 		try:
-			self.__services = { __service_name_list[0]:ActiveScan(self._args), __service_name_list[1]:PassiveScan(self._args), __service_name_list[2]:ScreenScan(self._args) }	
+			self.__services = { __service_name_list[0]:ActiveScan(self._args), __service_name_list[1]:PassiveScan(self._args), __service_name_list[2]:ScreenScan(self._args), __service_name_list[3]:FilterScan(self._args) }	
 		except FlashLightExceptions, err:
 			Core.print_error(err)
 
 		self.__logger = Logger(self._args.log_file, self._args.verbose)
+
 
 
 	def _run(self, scan_type):
