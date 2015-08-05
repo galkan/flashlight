@@ -44,7 +44,6 @@ class ActiveScan(InitDirFile):
                         for t in thread_list:
                                 t.join()
 
-			logger._logging("STOP: Active scan")
 			logger._logging("Finished Active Scan. Results saved in {0} folder".format(self._output_dir))
 			
                 except Exception, err:
