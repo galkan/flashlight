@@ -29,7 +29,7 @@ class FilterScan(Filter):
 		else:
 			for line in iter(proc.stdout.readline, ''):
 				try:
-				 	result_set[line.rstrip()] =  result_set[line.rstrip()] + 1
+				 	result_set[line.rstrip()] += 1
 				except:
 					result_set[line.rstrip()] = 1	
 		
