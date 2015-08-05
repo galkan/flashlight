@@ -7,6 +7,6 @@ udp_ports:
 scripts:
          - http-enum
 
-#screen_ports:
-#         - 80, 443,   8080,    8443
+screen_ports:
+         - 80, 443,   8080,    8443
 
