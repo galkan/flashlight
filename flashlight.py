@@ -2,6 +2,7 @@
 
 try:
 	from lib.main import Main
+	from lib.core.core import Core
 except ImportError, err:
 	from lib.core.core import Core
 	Core.print_error(err)

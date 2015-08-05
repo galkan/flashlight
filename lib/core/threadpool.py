@@ -4,8 +4,10 @@ try:
         from Queue import Queue
         from threading import Thread
 except ImportError, err:
-        from lib.core.core import Core
-        Core.print_error(err)
+        import sys
+        sys.stderr.write("%s : %s-%s\n"% (err, __file__, inspect.currentframe().f_lineno))
+        sys.exit(1)
+
 
 
 class Worker(Thread):
