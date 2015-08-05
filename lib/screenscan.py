@@ -64,7 +64,6 @@ class ScreenScan(WebScan):
 			pool.add_task(self.__run_phantomjs, phantomjs_cmd)
 
 		pool.wait_completion()
-		logger._logging("STOP: Screen Scan")
 		logger._logging("Finished Screenshot Scan. Results saved in {0} folder".format(self._output_dir))
 					
 
