@@ -46,7 +46,6 @@ class FilterScan(Filter):
   					result_file.write("{0} {1}\n".format(result_set[value], value))
 				
 
-
 	def _run(self, logger):
 		
 		logger._logging("START: Filter pcap file")
@@ -55,5 +54,4 @@ class FilterScan(Filter):
 			result_set = {} if file_name.startswith("top10") else []
 			self.__run_cmd(tshark_cmd, file_name, result_set, logger)
 		
-		logger._logging("STOP: Filter pcap file")
 		logger._logging("Finished Filtering. Results saved in {0} folder".format(self._output_dir))
