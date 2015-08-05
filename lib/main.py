@@ -57,8 +57,10 @@ class Main(object):
 		except FlashLightExceptions, err:
 			Core.print_error(err)
 
-		self.__logger = Logger(self._args.log_file, self._args.verbose)
-
+		try:
+			self.__logger = Logger(self._args.log_file, self._args.verbose)
+		except Exception, err:
+			Core.print_error(str(err))		
 
 
 	def _run(self, scan_type):
