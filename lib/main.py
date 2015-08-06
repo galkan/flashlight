@@ -36,6 +36,7 @@ class Main(object):
 		parser.add_argument('-t', '--thread', dest = 'thread', action = 'store', help = 'Thread Number', default = 10, type = int)
 		parser.add_argument('-o', '--output', dest = 'output', action = 'store', help = 'Output Directory', default = os.getcwd())
 		parser.add_argument('-a', '--alive', dest = 'is_alive', action = 'store_true', help = 'Ping Scan to Investigate Which Ip Address Are Up Before Scanning', default = None)
+		parser.add_argument('-g', '--gateway', dest = 'gateway', action = 'store', help = 'Specify Gateway')
 		parser.add_argument('-l', '--log', dest = 'log_file', action = 'store', help = 'Log File', metavar = 'FILE', default = "flashlight.log")
 		parser.add_argument('-k', '--passive_timeout', dest = 'passive_timeout', action = 'store', help = 'Passive Scan Timeout Value', default = 15, type = int)
 		parser.add_argument('-m', '--mim', dest = 'mim', action = 'store_true', help = 'Capture the Traffic When Performing Man in The Middle', default = None)
