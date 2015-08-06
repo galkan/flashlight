@@ -21,10 +21,7 @@ class Worker(Thread):
 
 
     def run(self):
-        """
-                Thread basladiginda calisacak kod. self.start() dendiginde calisacak kod parcai
-        """
-
+        
         while True:
                 func, args, kargs = self.tasks.get(True, None)
 
@@ -34,6 +31,7 @@ class Worker(Thread):
                 try:
                         func(*args, **kargs)
                 except Exception, err:
+                        print err
                         pass
 
                 self.tasks.task_done()
