@@ -19,9 +19,9 @@ class Passive(InitDirFile):
 		self.__proc_route = "/proc/net/route"
 		self._output_file = "{0}{1}.pcap".format(self._output_dir, datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
 		
-		self._default_gw = self.__get_default_gw()
-
-
+		self._default_gw = args.gateway if args.gateway else self.__get_default_gw()
+			
+	
 	def __get_default_gw(self):
 
 		try:
