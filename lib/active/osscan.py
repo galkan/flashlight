@@ -1,7 +1,6 @@
 
 try:
 	import datetime
-	from lib.core.config_parser import ConfigParser
 	from lib.active.corescanner import CoreScanner
 except ImportError, err:
 	from lib.core.core import Core
