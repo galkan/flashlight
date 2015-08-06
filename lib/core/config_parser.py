@@ -93,17 +93,16 @@ class ConfigParser(object):
 		return "{0} {1}".format(ports_options, script_options)
 
 
-
+        
 	@staticmethod
 	def get_screen_ports(config_file):
 
-		try:
-			if ConfigParser.result["screen_ports"]:	
-				return ConfigParser.result["screen_ports"]
-			else:
-				cfg = ConfigParser.parser(config_file)
-		except FlashLightExceptions, err:
-                       	raise FlashLightExceptions(str(err))
-		except:
-			return ConfigParser.default_ports
+                cfg = ConfigParser.parser if ConfigParser.result else ConfigParser.parser(config_file)
+
+                try:    
+                        return cfg["screen_ports"]
+                except KeyError:
+                        return ConfigParser.default_ports
+                except:
+                        raise FlashLightExceptions(str(err))
 
