@@ -17,7 +17,7 @@ class ScriptScan(CoreScanner):
 		try:
 			self._scan_options = ConfigParser.get_scripts_options(config_file)
 		except Exception, err:
-			raise FlashLightExceptions(err)		
+			raise FlashLightExceptions(str(err))		
 
 		output_file = "{0}{1}-{2}".format(output_dir, scan_type, datetime.datetime.now().strftime("%Y%m%d%H%M"))
 
