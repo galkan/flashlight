@@ -35,10 +35,7 @@ class FilterScan(Filter):
                                         result_set[line.rstrip()] = 1   
 
                 if isinstance(result_set, (list, tuple)):
-                        if len(result_set) > 10:
-                                result_file.write("".join(result_set[1:10]))
-                        else:
-                                result_file.write("".join(result_set))
+                        result_file.write("".join(result_set[1:10])) if len(result_set) > 10 else result_file.write("".join(result_set))
                 else:
                         for counter, value in enumerate(sorted(result_set, key=result_set.get, reverse=True)):
                                 if counter == 10:
