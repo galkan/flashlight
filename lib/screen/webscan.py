@@ -20,5 +20,5 @@ class WebScan(InitDirFile):
 
 		if args.destination:
 			__destination =  " ".join([ip.strip() for ip in args.destination.split(",")])
-			self._nmap_options = "{0} {1} -oG {2} {3}".format(core_options, Core.nmap_optimize, self._result_file.name, __destination) if args.nmap_optimize else  "{0} -oG {1} {2}".format(core_options, self._result_file.name, __destination)
+			self._nmap_options = "{0} {1} -oG {2} {3}".format(core_options, Core._nmap_optimize, self._result_file.name, __destination) if args.nmap_optimize else  "{0} -oG {1} {2}".format(core_options, self._result_file.name, __destination)
 
