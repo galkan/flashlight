@@ -20,7 +20,7 @@ class CoreScanner(object):
 		self.__ip_file = ip_file_to_scan
 		self.__output_file = output_file
 	
-		self.__nmap_options = "{0} {1} -iL {2}".format(CoreScanner.__scan_type_options[self.__scan_type], Core.nmap_optimize, self.__ip_file) if nmap_optimize else "{0} -iL {1}".format(CoreScanner.__scan_type_options[self.__scan_type], self.__ip_file)
+		self.__nmap_options = "{0} {1} -iL {2}".format(CoreScanner.__scan_type_options[self.__scan_type], Core._nmap_optimize, self.__ip_file) if nmap_optimize else "{0} -iL {1}".format(CoreScanner.__scan_type_options[self.__scan_type], self.__ip_file)
 			
 		self._proc_cmd = "{0} {1}".format(Core._commands_path["nmap"], self.__nmap_options)
 
