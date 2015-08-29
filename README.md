@@ -123,7 +123,7 @@ By decoding Basic authentication message, access informations for web server wil
 
 All parameters during passive scanning is listed below.
 
-<p></i></strong>./flashlight.py -s passive -p passive-pro-03 -i eth0 -g 192.168.74.2 -m -k 50 -o /root/Desktop/flashlight_passive_full -l /root/Desktop/log -v </i></strong></p>
+<p><i><strong>./flashlight.py -s passive -p passive-pro-03 -i eth0 -g 192.168.74.2 -m -k 50 -o /root/Desktop/flashlight_passive_full -l /root/Desktop/log -v </i></strong></p>
 
 
 <h2> 2) Active Scan </h2>
@@ -131,13 +131,16 @@ All parameters during passive scanning is listed below.
 During active scan, NMAP scripts are used by reading configuration fie. An example configuration file (flashlight.yaml) is stored in “config” directory in the working directory.
 
 tcp_ports:
-         - 21, 22, 23, 25, 80, 443, 445, 3128, 8080
+&nbsp&nbsp&nbsp&nbsp- 21, 22, 23, 25, 80, 443, 445, 3128, 8080
+
 udp_ports: 
-         - 53, 161
+&nbsp&nbsp&nbsp&nbsp- 53, 161
+
 scripts:
-         - http-enum
+&nbsp&nbsp&nbsp&nbsp- http-enum
+
 screen_ports:
-         - 80, 443, 8080, 8443
+&nbsp&nbsp&nbsp&nbsp- 80, 443, 8080, 8443
 
 <p>
 <a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-09.jpg"><img src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-09.jpg" style="width: 50%;" /></a>
@@ -145,7 +148,7 @@ screen_ports:
  
 According to "flashlight.yaml" configuration file scaning occurs via "21, 22, 23, 25, 80, 443, 445, 3128, 8080" TCP ports, "53, 161" UDP ports, "http-enum" script by using NMAP. 
 
-Note: During active scan “screen_ports” option is useless. This option works on screen scan.
+<strong>Note:</strong> During active scan “screen_ports” option is useless. This option works on screen scan.
 
 “-a” option is usefull to discover up IPs/hosts by sending ICMP packets. Beside this, incrementing thread number by using “-t” parameter increases scan speed.
 
@@ -164,10 +167,10 @@ By running this command 3 format (Normal, XML and Grepable) output files  for 4 
 The commands that Flashlight Application runs are like these:
 
 <ul>
-<li>Operating System Scan: /usr/bin/nmap -n -Pn -O -T5 -iL /tmp/<IPListesineAitDosya> -oA /root/Desktop/flashlight/output/active-project/nmap/OsScan-<Tarih>
-</li><li>Ping Scan: /usr/bin/nmap -n -sn -T5 -iL /tmp/<IPListesineAitDosya> -oA /root/Desktop/flashlight/output/active-project/nmap/PingScan-<Tarih>
-</li><li>Port Scan: /usr/bin/nmap -n -Pn -T5 --open -iL /tmp/<IPListesineAitDosya> -sS -p T:21,22,23,25,80,443,445,3128,8080,U:53,161 -sU -oA /root/Desktop/flashlight/output/active-project/nmap/PortScan-<Tarih>
-</li><li>Script Scan: /usr/bin/nmap -n -Pn -T5 -iL /tmp/<IPListesineAitDosya> -sS -p T:21,22,23,25,80,443,445,3128,8080,U:53,161 -sU --script=default,http-enum -oA /root/Desktop/flashlight/output/active-project/nmap/ScriptScan-<Tarih>
+<li>Operating System Scan: /usr/bin/nmap -n -Pn -O -T5 -iL /tmp/"IPListFile" -oA /root/Desktop/flashlight/output/active-project/nmap/OsScan-"Date"
+</li><li>Ping Scan: /usr/bin/nmap -n -sn -T5 -iL /tmp/"IPListFile" -oA /root/Desktop/flashlight/output/active-project/nmap/PingScan-"Date"
+</li><li>Port Scan: /usr/bin/nmap -n -Pn -T5 --open -iL /tmp/"IPListFile" -sS -p T:21,22,23,25,80,443,445,3128,8080,U:53,161 -sU -oA /root/Desktop/flashlight/output/active-project/nmap/PortScan-"Date"
+</li><li>Script Scan: /usr/bin/nmap -n -Pn -T5 -iL /tmp/"IPListFile" -sS -p T:21,22,23,25,80,443,445,3128,8080,U:53,161 -sU --script=default,http-enum -oA /root/Desktop/flashlight/output/active-project/nmap/ScriptScan-"Date"
 </li>
 <ul>
 
@@ -188,12 +191,12 @@ By using “-n” parameter, used additional NMAP options are shown as below.
 <p><i><strong>… -min-hostgroup 64 -min-parallelism 64 -host-timeout=300m -max-rtt-timeout=600ms -initial-rtt-timeout=300ms -min-rtt-timeout=300ms -max-retries=2 -min-rate=150 … </i></strong></p>
 
 
-<h2> 3) Ekran Görüntüsü Taraması </h2>
+<h2> 3) Screen Scan </h2>
 
 Screen Scan is used to get screenshots on web sites by using configurations in config file (flashlight.yaml). Configurations in this file provide screen scan for 4 ports ("80, 443, 8080, 8443") 
 
 screen_ports:
-         - 80, 443, 8080, 8443
+&nbsp&nbsp&nbsp&nbsp- 80, 443, 8080, 8443
 
 Sample screen scan is like this:
 
@@ -209,7 +212,7 @@ By running this command 3 web applications are detected. Screenshots of these we
 <a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-15.jpg"><img src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-15.jpg" style="width: 50%;" /></a>
 </p>
 
-<h2> 4) Filtreleme</h2>
+<h2> 4) Filtering</h2>
 Filtering option is used to analyse pcap files. An example for this option is shown as below:
 
 <p><i><strong>flashlight.py -p filter-project -s filter -f /root/Desktop/flashlight/output/passive-project-02/pcap/20150815072543.pcap -v </i></strong></p>
