@@ -6,6 +6,8 @@
 Pentesters spends too much time during information gathering phase. Flashlight (Fener) provides to scan network/ports and gather information rapidly on network. So Flashlight can be preferred to automate discovery step on penetration testing. In this article, usage of Flashligh application will be examined.
 For more information about usage Flashlight, "-h" or "-help" option can be used.
 
+<a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-01.jpg"><img src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-01.jpg" style="width: 50%; /></a>
+
 
 <p>
     Parameters for the usage of this application can be listed below
