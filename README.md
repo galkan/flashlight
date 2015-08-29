@@ -66,6 +66,10 @@ Parameters for the usage of this application can be listed below
 -V, --version: It specifies version of the program.
 </li>
 </ul>
+
+- -X asd
+- 
+
 Flashlight application can perform 3 basic scan type and 1 analysis. Each of them are listed below.
 
 - Active scan  
