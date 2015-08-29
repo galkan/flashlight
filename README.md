@@ -76,7 +76,7 @@ In passive scan, no packets are sent to wire. This type of scan is used for list
 
 To launch a passive scan by using Flashlight; firstly project name should be specified like “passive-pro-01”. In the following command, packets that are captured by eth0 are saved into “/root/Desktop/flashlight/output/passive-project-01/pcap" directory as Pcap files and all logs are saved into "/root/Desktop/log" directory.
 
-<p style="text-indent: 30px;">./flashlight.py -s passive -p passive-pro-01 -i eth0 -o /root/Desktop/flashlight_test -l /root/Desktop/log –v</p>
+<p><i><strong>./flashlight.py -s passive -p passive-pro-01 -i eth0 -o /root/Desktop/flashlight_test -l /root/Desktop/log –v</i></strong></p>
 
 <p>
 <a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-02.jpg"><img src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-02.jpg" style="width: 50%;" /></a>
@@ -105,7 +105,7 @@ Content of log file is like command line output:
 
 During standard passive scanning Broadcast ackets and direct packets to scanning machines are captured. Beside this,by using “-mim/-m” parameter, Arp Spoof and MITM attack can be performed.
 
-<p style="text-indent: 30px;">./flashlight.py -s passive -p passive-project-02 -i eth0 -g 192.168.74.2 -m -k 50 -v </p>
+<p><i><strong>./flashlight.py -s passive -p passive-project-02 -i eth0 -g 192.168.74.2 -m -k 50 -v </i></strong></p>
 
 <p>
 <a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-06.jpg"><img src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-06.jpg" style="width: 50%;" /></a>
@@ -123,10 +123,10 @@ By decoding Basic authentication message, access informations for web server wil
 
 All parameters during passive scanning is listed below.
 
-<p style="text-indent: 30px;">./flashlight.py -s passive -p passive-pro-03 -i eth0 -g 192.168.74.2 -m -k 50 -o /root/Desktop/flashlight_passive_full -l /root/Desktop/log -v </p>
+<p></i></strong>./flashlight.py -s passive -p passive-pro-03 -i eth0 -g 192.168.74.2 -m -k 50 -o /root/Desktop/flashlight_passive_full -l /root/Desktop/log -v </i></strong></p>
 
 
-2) Active Scan
+<h2> 2) Active Scan </h2>
 
 During active scan, NMAP scripts are used by reading configuration fie. An example configuration file (flashlight.yaml) is stored in “config” directory in the working directory.
 
@@ -149,7 +149,7 @@ Note: During active scan “screen_ports” option is useless. This option works
 
 “-a” option is usefull to discover up IPs/hosts by sending ICMP packets. Beside this, incrementing thread number by using “-t” parameter increases scan speed.
 
-<p style="text-indent: 30px;">./flashlight.py -p active-project -s active -d 192.168.74.0/24 –t 30 -a -v </p>
+<p><i><strong>./flashlight.py -p active-project -s active -d 192.168.74.0/24 –t 30 -a -v </i></strong></p>
 
 <p>
 <a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-10.jpg"><img src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-10.jpg" style="width: 50%;" /></a>
@@ -177,7 +177,7 @@ The commands that Flashlight Application runs are like these:
 
 To run effective and optimized active scan, “-n” parameter can be used:
 
-<p style="text-indent: 30px;">./flashlight.py -p active-project -s active -d 192.168.74.0/24 -n -a –v </p>
+<p><i><strong>./flashlight.py -p active-project -s active -d 192.168.74.0/24 -n -a –v </i></strong></p>
 
 <p>
 <a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-13.jpg"><img src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-13.jpg" style="width: 50%;" /></a>
@@ -185,7 +185,7 @@ To run effective and optimized active scan, “-n” parameter can be used:
 
 By using “-n” parameter, used additional NMAP options are shown as below. 
 
-<p style="text-indent: 30px;">… -min-hostgroup 64 -min-parallelism 64 -host-timeout=300m -max-rtt-timeout=600ms -initial-rtt-timeout=300ms -min-rtt-timeout=300ms -max-retries=2 -min-rate=150 … </p>
+<p><i><strong>… -min-hostgroup 64 -min-parallelism 64 -host-timeout=300m -max-rtt-timeout=600ms -initial-rtt-timeout=300ms -min-rtt-timeout=300ms -max-retries=2 -min-rate=150 … </i></strong></p>
 
 
 <h2> 3) Ekran Görüntüsü Taraması </h2>
@@ -197,7 +197,7 @@ screen_ports:
 
 Sample screen scan is like this:
 
-<p style="text-indent: 30px;">./flashlight.py -p project -s screen -d 192.168.74.0/24 -r /usr/local/rasterize.js -t 10 -v </p>
+<p><i><strong>./flashlight.py -p project -s screen -d 192.168.74.0/24 -r /usr/local/rasterize.js -t 10 -v </i></strong></p>
 
 <p>
 <a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-14.jpg"><img src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-14.jpg" style="width: 50%;" /></a>
@@ -212,7 +212,7 @@ By running this command 3 web applications are detected. Screenshots of these we
 <h2> 4) Filtreleme</h2>
 Filtering option is used to analyse pcap files. An example for this option is shown as below:
 
-<p style="text-indent: 30px;">./flashlight.py -p filter-project -s filter -f /root/Desktop/flashlight/output/passive-project-02/pcap/20150815072543.pcap -v </p>
+<p><i><strong>flashlight.py -p filter-project -s filter -f /root/Desktop/flashlight/output/passive-project-02/pcap/20150815072543.pcap -v </i></strong></p>
 
 By running this command some files are created on “filter” sub folder.
 
