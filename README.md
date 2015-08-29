@@ -112,6 +112,7 @@ During standard passive scanning Broadcast ackets and direct packets to scanning
 </p>
 
 By analyzing captured PCAP file HTTP traffic can be seen.
+
 <p>
 <a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-07.jpg"><img src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-07.jpg" style="width: 50%;" /></a>
 </p>
@@ -131,16 +132,19 @@ All parameters during passive scanning is listed below.
 During active scan, NMAP scripts are used by reading configuration fie. An example configuration file (flashlight.yaml) is stored in “config” directory in the working directory.
 
 tcp_ports:
-&nbsp &nbsp &nbsp &nbsp- 21, 22, 23, 25, 80, 443, 445, 3128, 8080
+
+       - 21, 22, 23, 25, 80, 443, 445, 3128, 8080
 
 udp_ports: 
-&nbsp &nbsp &nbsp &nbsp- 53, 161
+
+       - 53, 161
 
 scripts:
-&nbsp &nbsp &nbsp &nbsp- http-enum
+
+       - http-enum
 
 screen_ports:
-&nbsp &nbsp &nbsp &nbsp- 80, 443, 8080, 8443
+       - 80, 443, 8080, 8443
 
 <p>
 <a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-09.jpg"><img src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-09.jpg" style="width: 50%;" /></a>
@@ -196,7 +200,8 @@ By using “-n” parameter, used additional NMAP options are shown as below.
 Screen Scan is used to get screenshots on web sites by using configurations in config file (flashlight.yaml). Configurations in this file provide screen scan for 4 ports ("80, 443, 8080, 8443") 
 
 screen_ports:
-&nbsp &nbsp &nbsp &nbsp- 80, 443, 8080, 8443
+
+       - 80, 443, 8080, 8443
 
 Sample screen scan is like this:
 
