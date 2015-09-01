@@ -76,7 +76,9 @@ In passive scan, no packets are sent to wire. This type of scan is used for list
 
 To launch a passive scan by using Flashlight; firstly project name should be specified like “passive-pro-01”. In the following command, packets that are captured by eth0 are saved into “/root/Desktop/flashlight/output/passive-project-01/pcap" directory as Pcap files and all logs are saved into "/root/Desktop/log" directory.
 
-<p><i><strong>./flashlight.py -s passive -p passive-pro-01 -i eth0 -o /root/Desktop/flashlight_test -l /root/Desktop/log –v</i></strong></p>
+```
+./flashlight.py -s passive -p passive-pro-01 -i eth0 -o /root/Desktop/flashlight_test -l /root/Desktop/log –v
+```
 
 <p>
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-02.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-02.jpg" style="width: 50%;" /></a></center>
@@ -127,7 +129,9 @@ By decoding Basic authentication message, access informations for web server wil
 
 All parameters during passive scanning is listed below.
 
-<p><i><strong>./flashlight.py -s passive -p passive-pro-03 -i eth0 -g 192.168.74.2 -m -k 50 -o /root/Desktop/flashlight_passive_full -l /root/Desktop/log -v </i></strong></p>
+```
+./flashlight.py -s passive -p passive-pro-03 -i eth0 -g 192.168.74.2 -m -k 50 -o /root/Desktop/flashlight_passive_full -l /root/Desktop/log -v
+```
 
 
 <h2> 2) Active Scan </h2>
@@ -159,7 +163,9 @@ According to "flashlight.yaml" configuration file scaning occurs via "21, 22, 23
 
 “-a” option is usefull to discover up IPs/hosts by sending ICMP packets. Beside this, incrementing thread number by using “-t” parameter increases scan speed.
 
-<p><i><strong>./flashlight.py -p active-project -s active -d 192.168.74.0/24 –t 30 -a -v </i></strong></p>
+```
+./flashlight.py -p active-project -s active -d 192.168.74.0/24 –t 30 -a -v
+```
 
 <p>
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-10.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-10.jpg" style="width: 50%;" /></a></center>
@@ -187,7 +193,9 @@ The commands that Flashlight Application runs are like these:
 
 To run effective and optimized active scan, “-n” parameter can be used:
 
-<p><i><strong>./flashlight.py -p active-project -s active -d 192.168.74.0/24 -n -a –v </i></strong></p>
+```
+./flashlight.py -p active-project -s active -d 192.168.74.0/24 -n -a –v
+```
 
 <p>
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-13.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-13.jpg" style="width: 50%;" /></a></center>
@@ -208,7 +216,9 @@ screen_ports:
 
 Sample screen scan is like this:
 
-<p><i><strong>./flashlight.py -p project -s screen -d 192.168.74.0/24 -r /usr/local/rasterize.js -t 10 -v </i></strong></p>
+```
+./flashlight.py -p project -s screen -d 192.168.74.0/24 -r /usr/local/rasterize.js -t 10 -v
+```
 
 <p>
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-14.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-14.jpg" style="width: 50%;" /></a></center>
@@ -223,7 +233,9 @@ By running this command 3 web applications are detected. Screenshots of these we
 <h2> 4) Filtering</h2>
 Filtering option is used to analyse pcap files. An example for this option is shown as below:
 
-<p><i><strong>flashlight.py -p filter-project -s filter -f /root/Desktop/flashlight/output/passive-project-02/pcap/20150815072543.pcap -v </i></strong></p>
+```
+./flashlight.py -p filter-project -s filter -f /root/Desktop/flashlight/output/passive-project-02/pcap/20150815072543.pcap -v
+```
 
 By running this command some files are created on “filter” sub folder.
 
