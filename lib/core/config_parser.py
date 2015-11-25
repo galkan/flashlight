@@ -4,7 +4,7 @@ try:
 	from lib.core.exceptions import FlashLightExceptions
 except ImportError, err:
 	from lib.core.core import Core
-	Core.print_err(err)
+	Core.print_error(err)
 
 
 class ConfigParser(object):
