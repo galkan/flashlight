@@ -254,7 +254,7 @@ This option analyzes PCAP packets according to below properties:
 </ul>
 ...
 
-Thanks To:
+<h3> Thanks To: </h3>
 
 - Bahtiyar Bircan
 - Bedirhan Urgun
