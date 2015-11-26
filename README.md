@@ -216,13 +216,13 @@ To run an effective and optimized active scan, “-n” parameter can be used:
 
 <h2> 3) Screen Scan </h2>
 
-Screen Scan is used to get screenshots on web sites by using configurations in config file (flashlight.yaml). Configurations in this file provide screen scan for 4 ports ("80, 443, 8080, 8443") 
+Screen Scan is used to get screenshots of web sites/applications by using directives in config file (flashlight.yaml). Directives in this file provide screen scan for four ports ("80, 443, 8080, 8443") 
 
 screen_ports:
 
        - 80, 443, 8080, 8443
 
-Sample screen scan is like this:
+Sample screen scan can be performed like this:
 
 ```
 ./flashlight.py -p project -s screen -d 192.168.74.0/24 -r /usr/local/rasterize.js -t 10 -v
@@ -232,20 +232,20 @@ Sample screen scan is like this:
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-14.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-14.jpg" style="width: 50%;" /></a></center>
 </p>
 
-By running this command 3 web applications are detected. Screenshots of these web sites are saved in “screen” sub folder. These screenshts can be used for offline analysis.
+For example, assume that by running this command three web applications are detected. Screenshots of these web sites are saved in “screen” sub folder. These screenshts can be used for an offline analysis.
 
 <p>
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-15.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-15.jpg" style="width: 50%;" /></a></center>
 </p>
 
 <h2> 4) Filtering</h2>
-Filtering option is used to analyse pcap files. An example for this option is shown as below:
+Filtering option is used to analyse pcap files. An example for this option is shown below:
 
 ```
 ./flashlight.py -p filter-project -s filter -f /root/Desktop/flashlight/output/passive-project-02/pcap/20150815072543.pcap -v
 ```
 
-By running this command some files are created on “filter” sub folder.
+By running this command some files are created on “filter” sub-folder.
 
 This option analyzes PCAP packets according to below properties:
 <ul>
