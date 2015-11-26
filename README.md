@@ -73,16 +73,16 @@ Parameters for the usage of this application can be listed below
 apt-get install nmap tshark tcpdump dsniff
 ```
 
-İn order to install phantomjs easily, you can download and extract it from https://bitbucket.org/ariya/phantomjs/downloads. 
+In order to install phantomjs easily, you can download and extract it from https://bitbucket.org/ariya/phantomjs/downloads. 
 
 
-Flashlight application can perform 3 basic scan type and 1 analysis type. Each of them are listed below.
+Flashlight application can perform 3 basic scan types and 1 analysis type. Each of them are listed below.
 
 <h2> 1) Passive Scan </h2>
 
-In passive scan, no packets are sent to wire. This type of scan is used for listenning network and analyzing packets.
+In passive scan, no packets are sent into wire. This type of scan is used for listening network and analyzing packets.
 
-To launch a passive scan by using Flashlight; firstly project name should be specified like “passive-pro-01”. In the following command, packets that are captured by eth0 are saved into “/root/Desktop/flashlight/output/passive-project-01/pcap" directory as Pcap files and all logs are saved into "/root/Desktop/log" directory.
+To launch a passive scan by using Flashlight; a project name should be specified like “passive-pro-01”. In the following command, packets that are captured by eth0 are saved into “/root/Desktop/flashlight/output/passive-project-01/pcap" directory, whereas, Pcap files and all logs are saved into "/root/Desktop/log" directory.
 
 ```
 ./flashlight.py -s passive -p passive-pro-01 -i eth0 -o /root/Desktop/flashlight_test -l /root/Desktop/log –v
@@ -92,14 +92,14 @@ To launch a passive scan by using Flashlight; firstly project name should be spe
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-02.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-02.jpg" style="width: 50%;" /></a></center>
 </p>
 
-After scanning a new directory is named as “flashlight_test" and log ile named as “log” are created in "/root/Desktop/" directory.
+When the scan is completed a new directory, named “flashlight_test" and a log file, named “log”, are created in "/root/Desktop/" directory.
 
 <p>
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-03.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-03.jpg" style="width: 50%;" /></a></center>
 </p>
 
 
-Directory structure of  “flashlight_test” is like below. PCAP file is saved into “/root/Desktop/flashlight_test/output/passive-pro-01/pcap” directory. This PCAP file can be used for analysis purpose.
+Directory structure of  “flashlight_test” is like below. PCAP file is saved into “/root/Desktop/flashlight_test/output/passive-pro-01/pcap” directory. This PCAP file can be used for analysis purposes.
 ls /root/Desktop/flashlight_test -R
 
 <p>
@@ -107,13 +107,13 @@ ls /root/Desktop/flashlight_test -R
 </p>
  
  
-Content of log file is like command line output:
+Content of the log file is like command line output:
 <p>
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-04.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-04.jpg" style="width: 50%;" /></a></center>
 </p>
 
 
-During standard passive scanning Broadcast ackets and direct packets to scanning machines are captured. Beside this,by using “-mim/-m” parameter, Arp Spoof and MITM attack can be performed.
+During standard passive scanning Broadcast packets and direct packets to scan machines are captured. Beside this, by using “-mim/-m” parameter, Arp Spoof and MITM attack can be performed.
 
 
 ```
@@ -130,12 +130,12 @@ By analyzing captured PCAP file HTTP traffic can be seen.
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-07.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-07.jpg" style="width: 50%;" /></a></center>
 </p>
  
-By decoding Basic authentication message, access informations for web server will be accessed.
+By decoding Basic Authentication message, credentials denoting access information for web servers will be accessed.
 <p>
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-08.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-08.jpg" style="width: 50%;" /></a></center>
 </p>
 
-All parameters during passive scanning is listed below.
+All parameters during passive scanning are listed below.
 
 ```
 ./flashlight.py -s passive -p passive-pro-03 -i eth0 -g 192.168.74.2 -m -k 50 -o /root/Desktop/flashlight_passive_full -l /root/Desktop/log -v
@@ -144,7 +144,7 @@ All parameters during passive scanning is listed below.
 
 <h2> 2) Active Scan </h2>
 
-During active scan, NMAP scripts are used by reading configuration fie. An example configuration file (flashlight.yaml) is stored in “config” directory in the working directory.
+During an active scan, NMAP scripts are used by reading the configuration file. An example configuration file (flashlight.yaml) is stored in “config” directory under the working directory.
 
 tcp_ports:
 
@@ -165,11 +165,11 @@ screen_ports:
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-09.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-09.jpg" style="width: 50%;" /></a></center>
 </p>
  
-According to "flashlight.yaml" configuration file scaning occurs via "21, 22, 23, 25, 80, 443, 445, 3128, 8080" TCP ports, "53, 161" UDP ports, "http-enum" script by using NMAP. 
+According to "flashlight.yaml" configuration file, the scan executes against "21, 22, 23, 25, 80, 443, 445, 3128, 8080" TCP ports, "53, 161" UDP ports, "http-enum" script by using NMAP. 
 
-<strong>Note:</strong> During active scan “screen_ports” option is useless. This option works on screen scan.
+<strong>Note:</strong> During active scan “screen_ports” option is useless. This option just works with screen scan.
 
-“-a” option is usefull to discover up IPs/hosts by sending ICMP packets. Beside this, incrementing thread number by using “-t” parameter increases scan speed.
+“-a” option is useful to discover up hosts by sending ICMP packets. Beside this, incrementing thread number by using “-t” parameter increases scan speed.
 
 ```
 ./flashlight.py -p active-project -s active -d 192.168.74.0/24 –t 30 -a -v
@@ -179,13 +179,13 @@ According to "flashlight.yaml" configuration file scaning occurs via "21, 22, 23
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-10.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-10.jpg" style="width: 50%;" /></a></center>
 </p>
 
-By running this command 3 format (Normal, XML and Grepable) output files  for 4 different scan type (Operating system scan, Ping scan, Port scan and Script Scan) are created.
+By running this command; output files in three different formats (Normal, XML and Grepable) are emitted for four different scan types (Operating system scan, Ping scan, Port scan and Script Scan).
 
 <p>
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-11.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-11.jpg" style="width: 50%;" /></a></center>
 </p>
 
-The commands that Flashlight Application runs are like these:
+The example commands that Flashlight Application runs can be given like so:
 
 <ul>
 <li>Operating System Scan: /usr/bin/nmap -n -Pn -O -T5 -iL /tmp/"IPListFile" -oA /root/Desktop/flashlight/output/active-project/nmap/OsScan-"Date"
@@ -199,7 +199,7 @@ The commands that Flashlight Application runs are like these:
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-12.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-12.jpg" style="width: 50%;" /></a></center>
 </p>
 
-To run effective and optimized active scan, “-n” parameter can be used:
+To run an effective and optimized active scan, “-n” parameter can be used:
 
 ```
 ./flashlight.py -p active-project -s active -d 192.168.74.0/24 -n -a –v
@@ -209,7 +209,7 @@ To run effective and optimized active scan, “-n” parameter can be used:
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-13.jpg"><img  src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-13.jpg" style="width: 50%;" /></a></center>
 </p>
 
-By using “-n” parameter, used additional NMAP options are shown as below. 
+“-n” parameter adds additional NMAP options which are shown below;
 
 <p><i><strong>… -min-hostgroup 64 -min-parallelism 64 -host-timeout=300m -max-rtt-timeout=600ms -initial-rtt-timeout=300ms -min-rtt-timeout=300ms -max-retries=2 -min-rate=150 … </i></strong></p>
 
