@@ -4,7 +4,7 @@
 
 Pentesters spend too much time during information gathering phase. Flashlight (Fener) provides services to scan network/ports and gather information rapidly on target networks. So Flashlight should be the choice to automate discovery step during a penetration test. In this article, usage of Flashligh application will be explained.
 
-For more information about usage Flashlight, "-h" or "-help" option can be used.
+For more information about using Flashlight, "-h" or "-help" option can be used.
 
 <center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-01.jpg"><img src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-01.jpg" style="width: 50%;" /></a></center>
 
@@ -12,46 +12,46 @@ Parameters for the usage of this application can be listed below
 
 <ul>
 <li>
--h, --help: It shows information about the use of the Flashlight application.
+-h, --help: It shows the information about using the Flashlight application.
 </li>
 <li>
 -p &lt;ProjectName&gt; or --project &lt; ProjectName&gt;: It sets project name with the name given. This paramater can be used to save different projects in different workspaces.
 </li>
 <li>
--s &lt;ScanType&gt; or –scan_type &lt; ScanType &gt;: It sets the type of scanning. There are four types of scanning: Active Scanning , Passive Scanning, Screenshot Scaning, Filtering. These types of scanning will be examined later in detail.
+-s &lt;ScanType&gt; or –scan_type &lt; ScanType &gt;: It sets the type of scans. There are four types of scans: Active Scan , Passive Scan, Screenshot Scan and Filtering. These types of scans will be examined later in detail.
 </li>
 <li>
--d &lt; DestinationNetwork&gt;, --destination &lt; DestinationNetwork &gt;: It sets network or IP where the scaning will be examined.
+-d &lt; DestinationNetwork&gt;, --destination &lt; DestinationNetwork &gt;: It sets the network or IP where the scan will be executed against.
 </li>
 <li>
 -c &lt;FileName&gt;, --config &lt;FileName&gt;: It specifies the configuration file. The scanning is realized according to the information in the configuration file.
 </li>
 <li>
--u &lt;NetworkInterface&gt;, --interface &lt; NetworkInterface&gt;: It sets network interface on passive scanning.
+-u &lt;NetworkInterface&gt;, --interface &lt; NetworkInterface&gt;: It sets the network interface used during passive scanning.
 </li>
 <li>
 -f &lt;PcapFile&gt;, --pcap_file &lt; PcapFile &gt;: It sets cap File that will be filtered.
 </li>
 <li>
--r &lt;RasterizeFile&gt;, --rasterize &lt; RasterizeFile&gt;: It sets the specific location of Rasterize JavaScript file which will be used for taking screenshots
+-r &lt;RasterizeFile&gt;, --rasterize &lt; RasterizeFile&gt;: It sets the specific location of Rasterize JavaScript file which will be used for taking screenshots.
 </li>
 <li>
--t &lt;ThreadNumber&gt;, --thread &lt;Threadnember&gt;: It sets the number of Thread. This parameter is valid only on screenshot screening (screen scan) mode.
+-t &lt;ThreadNumber&gt;, --thread &lt;Threadnember&gt;: It sets the number of Threads. This parameter is valid only on screenshot scanning (screen scan) mode.
 </li>
 <li>
--o &lt;OutputDiectory&gt;, --output &lt; OutputDiectory &gt;: It sets the directory in which the scan results can be saved. The scanning results are saved in 3 subdirectory : For Nmap scanning results, "nmap" subdirectory, for PCAP files "pcap" subdirectory and for screenshots "screen" subdirectories are used. Scanning results are saved in directory, shown under the output directories by this parameter. If this option is not set. Scaning results are saved in the directory that Flashlight applications are running.
+-o &lt;OutputDiectory&gt;, --output &lt; OutputDiectory &gt;: It sets the directory in which the scan results can be saved. The scan results are saved in 3 sub-directories : For Nmap scanning results, "nmap" subdirectory, for PCAP files "pcap" subdirectory and for screenshots "screen" subdirectories are used. Scan results are saved in directory, shown under the output directories by this parameter. If this option is not set, scan results are saved in the directory that Flashlight applications are running.
 </li>
 <li>
--a, --alive: It performs ping scan to discover up IP address before scanning. It is used for active scan.
+-a, --alive: It performs ping scan to discover up IP addresses before the actual vulnerability scan. It is used for active scan.
 </li>
 <li>
--g &lt;DefaultGateway&gt;, --gateway &lt; DefaultGateway &gt;: It identifies IP address of gateway. If not set, gateway for specified interface with “-I” parameter is choosen.
+-g &lt;DefaultGateway&gt;, --gateway &lt; DefaultGateway &gt;: It identifies the IP address of the gateway. If not set, interface with “-I” parameter is chosen.
 </li>
 <li>
--l &lt;LogFile&gt;, --log &lt; LogFile &gt;: It specifies log file to save scan results. If not set, logs are saved in “flashlight.log” file in working directory.
+-l &lt;LogFile&gt;, --log &lt; LogFile &gt;: It specifies the log file to save the scan results. If not set, logs are saved in “flashlight.log” file in working directory.
 </li>
 <li>
--k &lt;PassiveTimeout&gt;, --passive_timeout &lt;PassiveTimeout&gt;: It specifies timeout for sniffing in passive mode. Default value is 15 sconds.This parameter is used for passive scan.
+-k &lt;PassiveTimeout&gt;, --passive_timeout &lt;PassiveTimeout&gt;: It specifies the timeout for sniffing in passive mode. Default value is 15 seconds. This parameter is used for passive scan.
 </li>
 <li>
 -m, --mim: It is used to perform MITM attack.
