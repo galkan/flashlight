@@ -67,9 +67,10 @@ Parameters for the usage of this application can be listed below
 </li>
 </ul>
 
-Installation
-
+<h3> Installation </h3>
+```
 apt-get install nmap tshark tcpdump dsniff
+```
 
 İn order to install phantomjs easily, you can download and extract from https://bitbucket.org/ariya/phantomjs/downloads. 
 
