@@ -2,7 +2,7 @@
 ![](https://github.com/galkan/flashlight/blob/master/images/flashlight.png "Flashlight") Automated Information Gathering Tool for Penetration Testers 
 =====
 
-Videos :
+<h3> Videos : </h3>
 
 https://www.youtube.com/watch?v=EUMKffaAxzs&list=PL1BVM6VWlmWZOv9Hv8TV2v-kAlUmvA5g7&index=4
 https://www.youtube.com/watch?v=qCgW-SfYl1c&list=PL1BVM6VWlmWZOv9Hv8TV2v-kAlUmvA5g7&index=5
