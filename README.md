@@ -2,6 +2,13 @@
 ![](https://github.com/galkan/flashlight/blob/master/images/flashlight.png "Flashlight") Automated Information Gathering Tool for Penetration Testers 
 =====
 
+Videos :
+
+https://www.youtube.com/watch?v=EUMKffaAxzs&list=PL1BVM6VWlmWZOv9Hv8TV2v-kAlUmvA5g7&index=4
+https://www.youtube.com/watch?v=qCgW-SfYl1c&list=PL1BVM6VWlmWZOv9Hv8TV2v-kAlUmvA5g7&index=5
+https://www.youtube.com/watch?v=98Soe01swR8&list=PL1BVM6VWlmWZOv9Hv8TV2v-kAlUmvA5g7&index=6
+https://www.youtube.com/watch?v=9wft9zuh1f0&list=PL1BVM6VWlmWZOv9Hv8TV2v-kAlUmvA5g7&index=7
+
 Pentesters spend too much time during information gathering phase. Flashlight (Fener) provides services to scan network/ports and gather information rapidly on target networks. So Flashlight should be the choice to automate discovery step during a penetration test. In this article, usage of Flashligh application will be explained.
 
 For more information about using Flashlight, "-h" or "-help" option can be used.
