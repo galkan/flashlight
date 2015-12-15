@@ -13,7 +13,7 @@ Pentesters spend too much time during information gathering phase. Flashlight (F
 
 For more information about using Flashlight, "-h" or "-help" option can be used.
 
-<center><a href="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-01.jpg"><img src="http://www.siberportal.org/wp-content/uploads/2015/08/flashlight-automated-information-gathering-tool-for-penetration-testers-01.jpg" style="width: 50%;" /></a></center>
+
 
 Parameters for the usage of this application can be listed below
 
