@@ -40,7 +40,7 @@ class Main(object):
 		parser.add_argument('-l', '--log', dest = 'log_file', action = 'store', help = 'Log File', metavar = 'FILE', default = "flashlight.log")
 		parser.add_argument('-k', '--passive_timeout', dest = 'passive_timeout', action = 'store', help = 'Passive Scan Timeout Value', default = 15, type = int)
 		parser.add_argument('-m', '--mim', dest = 'mim', action = 'store_true', help = 'Capture the Traffic When Performing Man in The Middle', default = None)
-		parser.add_argument('-n', '--nmap-optimize', dest = 'nmap_optimize', action = 'store_true', help = 'Use Some Sxtra Nmap Options To Optimize Scanning For Performance Tuning', default = None)
+		parser.add_argument('-n', '--nmap-optimize', dest = 'nmap_optimize', action = 'store_true', help = 'Use Some Extra Nmap Options To Optimize Scanning For Performance Tuning', default = None)
 		parser.add_argument('-v', '--verbose', dest = 'verbose', action = 'store_true', help = 'Verbose Output', default = None)
 		parser.add_argument('-V', '--version', action='version', version='%(prog)s 1.0')
 
