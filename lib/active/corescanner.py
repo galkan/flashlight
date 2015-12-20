@@ -1,6 +1,7 @@
 
 try:
 	import os		
+	import shlex
 	import time
 	import datetime
 	import subprocess
@@ -34,7 +35,8 @@ class CoreScanner(object):
 		
 		logger._logging("START: Nmap {0}".format(self.__scan_type))
 		logger._logging("CMD - {0} : {1}".format(self.__scan_type, cmd))
-		
-		proc = subprocess.Popen([cmd], shell=True, stdout = subprocess.PIPE, stderr = subprocess.PIPE,).communicate()
+
+		cmd_list = shlex.split(cmd)
+		proc = subprocess.Popen(cmd_list, stdout = subprocess.PIPE, stderr = subprocess.PIPE,).communicate()
 
 		logger._logging("STOP: Nmap {0}".format(self.__scan_type))
