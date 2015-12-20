@@ -1,6 +1,7 @@
 
 try:
 	import re
+	import shlex
 	import datetime
 	import subprocess
 	from lib.core.core import Core
