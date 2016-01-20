@@ -266,6 +266,7 @@ This option analyzes PCAP packets according to below properties:
 - Bahtiyar Bircan
 - Bedirhan Urgun
 - Ertugrul Basaranoglu
+- Johan Nestaas
 
 
 
