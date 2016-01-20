@@ -1,6 +1,7 @@
 try:
 	import os
 	import subprocess
+	import shlex
 	from lib.core.core import Core
 	from lib.filter.filter import Filter
 except ImportError, err:
@@ -24,7 +25,8 @@ class FilterScan(Filter):
                 logger._logging("Filter: {0} parsing".format(file_name))
                 logger._logging("CMD - Filter: {0}".format(cmd))
 
-                proc = subprocess.Popen([cmd], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,)
+                cmd_list = shlex.split(cmd)
+                proc = subprocess.Popen(cmd_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE,)
                 if isinstance(result_set, (list, tuple)):
                         [ result_set.append(line) for line in iter(proc.stdout.readline, '') if line not in result_set ]
                 else:

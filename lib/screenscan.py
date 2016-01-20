@@ -1,6 +1,7 @@
 
 try:
 	import re
+	import shlex
 	import datetime
 	import subprocess
 	from lib.core.core import Core
@@ -26,7 +27,8 @@ class ScreenScan(WebScan):
 		cmd = "{0} {1}".format(Core._commands_path["nmap"], self._nmap_options)
 
 		logger._logging("START: Nmap Screen Scan: {0}".format(cmd))
-		proc = subprocess.Popen([cmd], shell=True, stdout = subprocess.PIPE, stderr = subprocess.PIPE,).communicate()
+		cmd_list = shlex.split(cmd)
+		proc = subprocess.Popen(cmd_list, stdout = subprocess.PIPE, stderr = subprocess.PIPE,).communicate()
 		logger._logging("STOP: Nmap Screen Scan")
 
 		self.__parse_nmap_scan(logger)
@@ -69,5 +71,6 @@ class ScreenScan(WebScan):
 
 	def __run_phantomjs(self, cmd):
 
-		proc = subprocess.Popen([cmd], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,).communicate()
+		cmd_list = shlex.split(cmd)
+		proc = subprocess.Popen(cmd_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE,).communicate()
 

@@ -1,6 +1,7 @@
 
 try:
 	import re
+	import shlex
 	import datetime
 	import tempfile
 	import subprocess
@@ -35,7 +36,8 @@ class PingScan(CoreScanner):
 		logger._logging("START: Nmap Ping Scan")
 		logger._logging("CMD - Ping Scan: {0}".format(cmd))
 
-		proc = subprocess.Popen([cmd], shell=True, stdout=subprocess.PIPE,).communicate()
+		cmd_list = shlex.split(cmd)
+		proc = subprocess.Popen(cmd_list, stdout=subprocess.PIPE,).communicate()
 		try:
 			with open(gnmap_file, "r") as fd:
 				result_file.write("\n".join([ re.search(self.__host_up, line).groups()[0] for line in fd  if re.search(self.__host_up, line) ]))
